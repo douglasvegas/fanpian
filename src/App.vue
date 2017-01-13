@@ -18,15 +18,14 @@
   </div>
   
   </transition>
+  
   <div id="content">
-    <my-swipe></my-swipe>
-    <div id = 'test'>
-      <span>
-        logonavhere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contenthere is content many content many many contentfooter
-      </span>
-    </div>
+    <MySwipe></MySwipe>
+    <MyPlist></MyPlist>
   </div>
+
   <my-footer></my-footer>
+
   </section>
     
 </template>
@@ -34,7 +33,10 @@
 <script>
 import MySwipe from './components/Swipe.vue'
 import MyFooter from './components/Footer.vue'
+import MyPlist from './components/Piclist.vue'
+
 import Velocity from 'velocity-animate'
+
 export default {
   name: 'app',
   data () {
@@ -100,7 +102,9 @@ export default {
     }
   },
   components: {
-     MySwipe,MyFooter
+     MySwipe,
+     MyFooter,
+     MyPlist
   },
   watch: {
     'msg': 'handleChange'
@@ -227,10 +231,5 @@ a {
   bottom:50px;
   background-color: #ebebeb;
 }
-#content div#test {
-  height: auto;
-  width: 100%;
-}
-
 
 </style>

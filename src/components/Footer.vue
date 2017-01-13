@@ -1,18 +1,12 @@
 <template>
     <div class="footer">
         <ul>
-            <li>发现</li>
-            <li>中</li>
-            <li>我的</li>
+            <li><icon name="favorite" scale="20"></icon>发现</li>
+            <li><icon name="add" scale="20"></icon>中.</li>
+            <li><icon name="account" scale="20"></icon>我的</li>
         </ul>
     </div>
 </template>
-
-<script>
-  export default {
-      name: 'my-footer'
-  }
-</script>
 
 <style>
     /*footer*/
@@ -32,3 +26,9 @@
     padding: 0 30px 0;
 }
 </style>
+
+<script>
+  export default {
+      name: 'my-footer'
+  }
+</script>
