@@ -20,6 +20,11 @@
   </transition>
   
   <div id="content">
+    <div id="pull-down" class="pull-down">
+        <div class="pull-down-content">
+            松手加载更多内容
+        </div>
+    </div>
     <MySwipe></MySwipe>
     <MyPlist></MyPlist>
   </div>
@@ -152,7 +157,8 @@ export default {
   width: 100%;
   height: auto;
   line-height:50px;
-  position:absolute;
+  position:fixed;
+  z-index: 999;
 }
 #app::after {
   content: "";
@@ -194,8 +200,9 @@ export default {
     white-space: nowrap;
     overflow-y: hidden;
     overflow-x: scroll;
-    font-weight: bolder;
+    /*font-weight: bolder;*/
     padding-bottom: 50px;
+    -webkit-overflow-scrolling : touch;  
 }
 .tabUl li {
   display: inline-block;
@@ -227,9 +234,11 @@ a {
   width:100%; 
   overflow: auto; 
   position:absolute; 
-  top:100px; 
+  /*top:100px; */
+  top:83px;
   bottom:50px;
   background-color: #ebebeb;
+  -webkit-overflow-scrolling : touch;  
 }
 
 </style>

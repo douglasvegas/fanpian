@@ -26,8 +26,8 @@
 
 .imgList img {
     width: 100%;
-    height: 120px;
-    border-radius: 5px;
+    height: 150px;
+    border-radius: 10px;
 }
 </style>
 
