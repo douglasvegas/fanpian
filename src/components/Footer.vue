@@ -32,8 +32,13 @@
   overflow: hidden;
   text-align: center;
 }
+.footer ul {
+    display: table;
+    width: 100%;
+}
 .footer li {
-    padding: 0 30px 0;
+    /*padding: 0 30px 0;*/
+    display: table-cell;
 }
 .footer .toTop{
     position: relative;
