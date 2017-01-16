@@ -1,10 +1,11 @@
 <template>
     <div class="footer">
-        
         <ul>
             <li :class="{tabCurrent:activeFooter.isLeft}" @click = "changeActive('left')">
                 <i class="toTop fa fa-heartbeat"></i>
-                <span>发现</span>
+                <span>
+                <router-link to="/">发现</router-link>
+                </span>
             </li>
             <li class="redActive">
                 <i class="fa fa-dot-circle-o fa-3x"></i>
@@ -12,7 +13,9 @@
             </li>
             <li :class="{tabCurrent:activeFooter.isRight}" @click = "changeActive('right')">
                 <i class="toTop fa fa-gear"></i>
-                <span>我的</span>
+                <span>
+                <router-link to = '/profile'>我的</router-link>
+                </span>
             </li>
         </ul>
     </div>

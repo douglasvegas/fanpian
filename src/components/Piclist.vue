@@ -26,6 +26,7 @@
                 </li>
             </ul>
         </div>
+        <div class="fill-footer"></div>
     </div>    
 </template>
 
@@ -64,12 +65,13 @@
     position: absolute;
     top: 1rem;
     left: 1rem;
-    text-shadow:0px 0px 22px rgba(255,255,255,0.8)
+    text-shadow:1px 1px 4px rgb(10, 10, 10)
 }
 .wrapContent>span {
     position: absolute;
     top: 2.6rem;
     left: 1rem;
+    font-size: 0.8rem;
 }
 .wrapContent>ul {
     position: absolute;
@@ -77,11 +79,34 @@
     bottom: 1rem;
     font-size: 0.5rem;
 }
+.fill-footer {
+    width: 100%;
+    height: 34px;
+}
+
+h1, h2 {
+  font-weight: normal;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+a {
+  color: #000000;
+}
+
 </style>
 
 <script>
   export default {
-      name: 'my-plist',
+    //   name: 'my-plist',
 
       data () {
           return {
