@@ -2,20 +2,20 @@
     <div class="footer">
         <ul>
             <li :class="{tabCurrent:activeFooter.isLeft}" @click = "changeActive('left')">
-                <i class="toTop fa fa-heartbeat"></i>
-                <span>
-                <router-link to="/">发现</router-link>
-                </span>
+                <router-link to="/">
+                    <i class="toTop fa fa-compass"></i>
+                    <span>发现</span>
+                </router-link>
             </li>
             <li class="redActive">
-                <i class="fa fa-dot-circle-o fa-3x"></i>
+                <i class="fa fa-plus-circle fa-3x"></i>
                 <!--<span>中.</span>-->
             </li>
             <li :class="{tabCurrent:activeFooter.isRight}" @click = "changeActive('right')">
-                <i class="toTop fa fa-gear"></i>
-                <span>
-                <router-link to = '/profile'>我的</router-link>
-                </span>
+                <router-link to = '/profile'>
+                    <i class="toTop fa fa-gear"></i>
+                    <span>我的</span>
+                </router-link>
             </li>
         </ul>
     </div>
@@ -49,8 +49,9 @@
     left: 28px;
 }
 .redActive{
-      color:#bf0b0b;
-    }
+      color:#289bf3;
+}
+
 </style>
 
 <script>
