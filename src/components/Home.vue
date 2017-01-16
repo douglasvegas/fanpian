@@ -3,11 +3,15 @@
         <my-header></my-header>
         <div id="content">
         <div id="pull-down" class="pull-down">
-            <div class="pull-down-content">
-                松手加载更多内容
+            <div class="pull-down-content" v-show = 'isShow'>
+                {{msg}}
             </div>
         </div>
-        <router-view></router-view>
+        <router-view v-on:changeLoading = 'changeLoad'
+                     v-on:resetLoading = 'restLoad'
+        >
+
+        </router-view>
         </div>
     </div>
     
@@ -20,20 +24,41 @@ export default {
     },
     data () {
         return {
-
+            msg: '松手加载更多内容',
+            isShow: false
+        }
+    },
+    methods: {
+        changeLoad: function () {
+            this.msg = '松手加载更多内容';
+            this.isShow = true;
+        },
+        restLoad : function () {
+            this.msg = 'loading......'
+            var _this = this;
+            setTimeout(function () {
+                this.msg = '松手加载更多内容';
+                _this.isShow = false;
+            },1500)
         }
     }
 }
 </script>
 <style>
 /*content*/
+.shouldShow {
+    display: block;
+}
 #content{
   width:100%; 
   /*overflow: auto; */
   position:absolute; 
-  top:82px;
+  top:105px;
   bottom:50px;
   background-color: #ebebeb;
   -webkit-overflow-scrolling : touch;  
 } 
+.pull-down-content {
+    text-align: center;
+}
 </style>
