@@ -1,13 +1,15 @@
 import Vue from 'vue'
-import App from './App.vue'
-import Icon from 'vue-svg-icon/Icon.vue';
-Vue.component('icon', Icon);  
-Icon.inject('account'); // the name of your svg pic
-Icon.inject('add'); // the name of your svg pic
-Icon.inject('favorite'); // the name of your svg pic
+import VueRouter from 'vue-router'
+import routes from './routers.js'
+
+Vue.use(VueRouter)
+
+let router = new VueRouter({
+  // linkActiveClass:'tabCurrent',
+  routes
+})
+
 
 new Vue({
-  el: '#app',
-
-  render: h => h(App)
-})
+  router,
+}).$mount('#app')
