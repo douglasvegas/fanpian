@@ -16,6 +16,7 @@
                     </div>
                     <div class="isRight">
                         <p>DouglasVegas</p>
+                        <br />
                         <p>123</p>
                     </div>
                 </div>
@@ -25,7 +26,7 @@
                             <span>123</span>
                             <p>收藏</p>
                         </li>
-                        <li>
+                        <li class="middle">
                             <span>55</span>
                             <p>关注</p>
                         </li>
@@ -103,7 +104,7 @@
 .profileItem .bottomDiv {
     position: absolute;
     width: 100%;
-    height: 56px;
+    height: 50px;
     bottom:0;
     left:0;
     border: 1px solid #ccc;

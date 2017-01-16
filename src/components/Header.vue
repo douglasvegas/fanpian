@@ -1,19 +1,23 @@
 <template>
-    <div id="header">
-    <div id = "row1">
-      <span>翻篇</span>
-      <input type="text" class="topSearch" placeholder="请搜索用户和文章" />
+    <div>
+        <div id="header">
+            <div id = "row1">
+            <span>翻篇</span>
+            <input type="text" class="topSearch" placeholder="请搜索用户和文章" />
+            </div>
+            <div id = "row2">
+            <ul class="tabUl">
+                <li v-for="(tab,index) in tabs" @click="setCurr(index)">
+                    <router-link :to="{ path:'/test/'+tab.id }"  :class="{tabCurrent:tab.isCurr}" >
+                        {{tab.name}}
+                    </router-link>
+                </li>
+            </ul>
+            </div>
+        </div>
+        <div class="homeHeaderBlock"></div>
     </div>
-    <div id = "row2">
-      <ul class="tabUl">
-        <li v-for="(tab,index) in tabs" @click="setCurr(index)">
-            <router-link :to="{ path:'/test/'+tab.id }"  :class="{tabCurrent:tab.isCurr}" >
-                {{tab.name}}
-            </router-link>
-        </li>
-      </ul>
-    </div>
-  </div>
+
 </template>
 <script>
     import Api from '../api/api.js'
@@ -90,6 +94,17 @@
   height: 0;
   visibility: hidden;
 }
+
+.homeHeaderBlock {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    display: block;
+    position: absolute;
+    background-color: #ebebeb;
+}
+
 .tabUl {
     background-color: white;
     color: black;
