@@ -7,7 +7,7 @@
                     <span>发现</span>
                 </router-link>
             </li>
-            <li class="redActive">
+            <li class="redActive" @click = "toWrite">
                 <i class="fa fa-plus-circle fa-3x"></i>
                 <!--<span>中.</span>-->
             </li>
@@ -18,6 +18,7 @@
                 </router-link>
             </li>
         </ul>
+        
     </div>
 </template>
 
@@ -75,6 +76,10 @@
                   this.activeFooter.isRight = true;
                   this.activeFooter.isLeft = false;
               }
+          },
+
+          toWrite: function () {
+              this.$emit("listenPop")
           }
       }
   }
