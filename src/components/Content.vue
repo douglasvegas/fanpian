@@ -3,11 +3,9 @@
          @touchmove = 'handleTouchMove'
          @touchend  = 'handleTouchEnd'
     >
-        
         <MySwipe></MySwipe>
         <MyPlist></MyPlist>
         <!--<router-view></router-view>-->
-
     </div>
 </template>
 <script>
