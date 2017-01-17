@@ -62,8 +62,12 @@
 .wrapContent p {
     font-weight: bold;
     font-size: 1.2rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     position: absolute;
     top: 1rem;
+    width: 100%;
     left: 1rem;
     text-shadow:1px 1px 4px rgb(10, 10, 10)
 }
@@ -105,17 +109,19 @@ a {
 </style>
 
 <script>
-
-  var axios = require('axios');
+import Vue from 'vue'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+ 
+Vue.use(VueAxios, axios)
   export default {
         mounted () {
             var _this = this;
-            axios.get('http://localhost:3000/picList')
+            Vue.axios.get('http://localhost:3000/picList')
                 .then(function (response) {
                     console.log(response)
                     if (response.status == 200 && response.data.picList.picList.length > 0) {
                         _this.infos = response.data.picList.picList
-                        console.log(_this.infos)
                     }
                 })
                 .catch(function (error) {

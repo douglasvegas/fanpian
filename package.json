@@ -18,6 +18,7 @@
     "velocity-animate": "^1.4.0",
     "vue": "^2.1.0",
     "vue-awesome-swiper": "^2.3.0",
+    "vue-axios": "^1.2.2",
     "vue-router": "^2.1.1"
   },
   "devDependencies": {
