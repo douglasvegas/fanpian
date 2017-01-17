@@ -7,9 +7,14 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot --host 0.0.0.0",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "test": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot --host 0.0.0.0"
+    "test": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot --host 0.0.0.0",
+    "mock-server": "json-server ./src/mock/index.js &",
+    "start1": "npm run mock-server && npm run dev",
+    "start": "concurrently \"npm run mock-server\" \"npm run dev\""
   },
   "dependencies": {
+    "axios": "^0.15.3",
+    "concurrently": "^3.1.0",
     "velocity-animate": "^1.4.0",
     "vue": "^2.1.0",
     "vue-awesome-swiper": "^2.3.0",
@@ -22,6 +27,7 @@
     "cross-env": "^3.0.0",
     "css-loader": "^0.25.0",
     "file-loader": "^0.9.0",
+    "mockjs": "^1.0.1-beta3",
     "vue-loader": "^10.0.0",
     "vue-svg-icon": "^1.0.10",
     "vue-template-compiler": "^2.1.0",

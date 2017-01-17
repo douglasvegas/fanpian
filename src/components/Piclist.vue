@@ -105,10 +105,24 @@ a {
 </style>
 
 <script>
-  export default {
-    //   name: 'my-plist',
 
-      data () {
+  var axios = require('axios');
+  export default {
+        mounted () {
+            var _this = this;
+            axios.get('http://localhost:3000/picList')
+                .then(function (response) {
+                    console.log(response)
+                    if (response.status == 200 && response.data.picList.picList.length > 0) {
+                        _this.infos = response.data.picList.picList
+                        console.log(_this.infos)
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }, 
+        data () {
           return {
             infos: [
                     {

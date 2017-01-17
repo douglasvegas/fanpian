@@ -5,7 +5,6 @@
     >
         
         <MySwipe></MySwipe>
-        <p>{{msg}}</p>
         <MyPlist></MyPlist>
         <!--<router-view></router-view>-->
 
@@ -39,7 +38,7 @@ import MyPlist from './Piclist.vue'
                
                 this.msg = parseInt(this.end) - parseInt(this.start);
                
-                if (this.msg > 50) {
+                if (this.msg > 160) {
                     this.$emit('changeLoading')
                 }
             },

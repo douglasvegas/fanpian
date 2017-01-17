@@ -77,3 +77,19 @@ if (process.env.NODE_ENV === 'production') {
     })
   ])
 }
+
+if (process.env.NODE_ENV == 'development') {
+  module.exports.devServer = {
+    hot: true,
+    inline: true,
+    proxy: {
+      '/rest/*': {
+        target: 'http://localhost:3000',
+        secure: false,
+        rewrite: function (req) {
+          req.url = req.url.replace(/^\/rest/, '')
+        }
+      }
+    }
+  }
+}
