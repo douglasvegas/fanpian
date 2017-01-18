@@ -140,9 +140,9 @@ a {
     position: fixed;
     z-index: 10001;
     width: 96%;
-    height: 147px;
+    height: 180px;
     margin: 1% 2%;
-    border-radius: 20px;
+    /* border-radius: 50px; */
     text-align: center;
     top: 100%;
 }
@@ -152,7 +152,7 @@ a {
     height: 60%;
     background: white;
     border-radius: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
     opacity: 0.9;
     position: relative;
 }
@@ -165,10 +165,9 @@ a {
 
 .popActions ul li {
     width: 100%;
-    height: 45px;
-    line-height: 45px;
+    height: 54px;
+    line-height: 54px;
     margin: 0;
-    
 }
 
 .popActions ul li:first-child {
@@ -177,10 +176,10 @@ a {
 
 .popCancel {
     width: 100%;
-    height: 40px;
+    height: 52px;
     background: white;
-    border-radius: 9px;
+    border-radius: 10px;
     opacity: 0.9;
-    line-height: 40px;
+    line-height: 52px;
 }
 </style>

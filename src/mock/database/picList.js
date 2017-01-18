@@ -23,8 +23,8 @@ var data = Mock.mock({
     'picList|10-20':[{
         title:'@csentence',
         author:'@CNAME',
-        'src|1' : ['src/assets/1.jpg','src/assets/2.jpg','src/assets/3.jpg','src/assets/4.jpg','src/assets/5.jpg',
-        'src/assets/6.jpg','src/assets/7.jpg','src/assets/8.jpg','src/assets/9.jpg','src/assets/1.jpg'],
+        'src|1' : ['src/assets/img/1.jpg','src/assets/img/2.jpg','src/assets/img/3.jpg','src/assets/img/4.jpg','src/assets/img/5.jpg',
+        'src/assets/img/6.jpg','src/assets/img/7.jpg','src/assets/img/8.jpg','src/assets/img/9.jpg','src/assets/img/1.jpg'],
         'scanCount|10-200': 100,
         'commentCount|60-300': 80,
         'praiseCount|50-80': 70

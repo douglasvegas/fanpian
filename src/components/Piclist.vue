@@ -42,8 +42,8 @@
 }
 
 .imgList>li {
-    padding-bottom: 7px;
-    position: relative
+    padding-bottom: 8px;
+    position: relative;
 }
 
 .imgList img {
@@ -79,9 +79,9 @@
 }
 .wrapContent>ul {
     position: absolute;
-    left: 0.7rem;
-    bottom: 1rem;
-    font-size: 0.8rem;
+    left: 26px;
+    bottom: 26px;
+    font-size: 22px;
 }
 .fill-footer {
     width: 100%;
@@ -134,7 +134,7 @@ var Axios = axios.create({
                     {
                         title:'测试1',
                         author:'作者1',
-                        src : 'src/assets/1.jpg',
+                        src : 'src/assets/img/1.jpg',
                         scanCount: 123,
                         commentCount: 65,
                         praiseCount: 22
@@ -142,7 +142,7 @@ var Axios = axios.create({
                     {
                         title:'测试2',
                         author:'作者2',
-                        src : 'src/assets/2.jpg',
+                        src : 'src/assets/img/2.jpg',
                         scanCount: 123,
                         commentCount: 65,
                         praiseCount: 22
@@ -150,7 +150,7 @@ var Axios = axios.create({
                     {
                         title:'测试3',
                         author:'作者1',
-                        src : 'src/assets/3.jpg',
+                        src : 'src/assets/img/3.jpg',
                         scanCount: 222,
                         commentCount: 12,
                         praiseCount: 33
@@ -158,7 +158,7 @@ var Axios = axios.create({
                     {
                         title:'测试4',
                         author:'作者4',
-                        src : 'src/assets/4.jpg',
+                        src : 'src/assets/img/4.jpg',
                         scanCount: 123,
                         commentCount: 65,
                         praiseCount: 22
@@ -166,7 +166,7 @@ var Axios = axios.create({
                     {
                         title:'测试1',
                         author:'作者1',
-                        src : 'src/assets/5.jpg',
+                        src : 'src/assets/img/5.jpg',
                         scanCount: 123,
                         commentCount: 65,
                         praiseCount: 22

@@ -20,7 +20,17 @@ module.exports = {
             // other preprocessors should work out of the box, no loader config like this nessessary.
             'scss': 'vue-style-loader!css-loader!sass-loader',
             'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
-          }
+          },
+          postcss: [
+           require('autoprefixer')({
+             browsers: [
+                'last 3 versions',
+                'ios >= 6',
+                'android >= 4.4',
+             ]
+           }),
+           require('postcss-plugins-px2rem')({remUnit: 75})
+          ]
           // other vue-loader options go here
         }
       },

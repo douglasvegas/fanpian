@@ -19,7 +19,7 @@
 
 </template>
 <style>
-@import '../swiper.min.css';
+@import '../assets/css/swiper.min.css';
 .swiper-slide {
     height: 150px;
     position: relative;

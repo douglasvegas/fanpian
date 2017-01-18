@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import routes from './routers.js'
+import './assets/css/base.css'
+
 const FastClick = require('fastclick')
 FastClick.attach(document.body)
 
