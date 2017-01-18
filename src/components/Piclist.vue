@@ -109,14 +109,15 @@ a {
 </style>
 
 <script>
-import Vue from 'vue'
-import axios from 'axios'
-import VueAxios from 'vue-axios'
-Vue.use(VueAxios, axios)
+var axios = require('axios');
+var Promise = require('es6-promise').polyfill();
+var Axios = axios.create({
+  promise: Promise
+});
   export default {
         mounted () {
             var _this = this;
-            Vue.axios.get('http://localhost:3000/picList')
+            axios.get('http://localhost:3000/picList')
                 .then(function (response) {
                     console.log(response)
                     if (response.status == 200 && response.data.picList.picList.length > 0) {

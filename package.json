@@ -15,6 +15,7 @@
   "dependencies": {
     "axios": "^0.15.3",
     "concurrently": "^3.1.0",
+    "es6-promise": "^4.0.5",
     "fastclick": "^1.0.6",
     "velocity-animate": "^1.4.0",
     "vue": "^2.1.0",
