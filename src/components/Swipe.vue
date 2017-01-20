@@ -18,22 +18,6 @@
       </swiper>
 
 </template>
-<style>
-@import '../assets/css/swiper.min.css';
-.swiper-slide {
-    height: 150px;
-    position: relative;
-    text-align: center;
-    line-height: 150px;
-}
-img.imgload {
-    width:100%;
-    height:150px;
-}
-.swiper-pagination-bullet-active {
-    background-color: white;
-}
-</style>
 
 <script>
  import Vue from 'vue'
@@ -55,3 +39,21 @@ img.imgload {
         }
     }
 </script>
+
+<style>
+@import '../assets/css/swiper.min.css';
+.swiper-slide {
+    height: 150px;
+    position: relative;
+    text-align: center;
+    line-height: 150px;
+}
+img.imgload {
+    width:100%;
+    height:150px;
+}
+.swiper-pagination-bullet-active {
+    background-color: white;
+}
+</style>
+

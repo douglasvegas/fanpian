@@ -17,6 +17,10 @@
     "concurrently": "^3.1.0",
     "es6-promise": "^4.0.5",
     "fastclick": "^1.0.6",
+    "less": "^2.7.2",
+    "less-loader": "^2.2.3",
+    "postcss-loader": "^1.2.2",
+    "postcss-plugin-px2rem": "^0.6.0",
     "velocity-animate": "^1.4.0",
     "vue": "^2.1.0",
     "vue-awesome-swiper": "^2.3.0",
@@ -24,7 +28,6 @@
     "vue-router": "^2.1.1"
   },
   "devDependencies": {
-    "autoprefixer": "^6.6.1",
     "babel-core": "^6.0.0",
     "babel-loader": "^6.0.0",
     "babel-preset-es2015": "^6.0.0",
@@ -32,8 +35,6 @@
     "css-loader": "^0.25.0",
     "file-loader": "^0.9.0",
     "mockjs": "^1.0.1-beta3",
-    "postcss": "^5.2.10",
-    "postcss-plugins-px2rem": "^0.0.5",
     "vue-loader": "^10.0.0",
     "vue-svg-icon": "^1.0.10",
     "vue-template-compiler": "^2.1.0",

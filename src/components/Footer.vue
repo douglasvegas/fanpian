@@ -7,8 +7,8 @@
                     <span>发现</span>
                 </router-link>
             </li>
-            <li class="redActive" @click = "toWrite">
-                <i class="fa fa-plus-circle fa-3x"></i>
+            <li class="redActive">
+                <i class="fa fa-plus-circle fa-3x" @click = "toWrite"></i>
                 <!--<span>中.</span>-->
             </li>
             <li :class="{tabCurrent:activeFooter.isRight}" @click = "changeActive('right')">
@@ -21,39 +21,6 @@
         
     </div>
 </template>
-
-<style>
-    /*footer*/
-.footer {
-  width: 100%;
-  height: 50px;
-  line-height: 50px;
-  background-color: white;
-  color:#737070;
-  border-top:1px solid #ccc;
-  position: fixed;
-  bottom: 0;
-  overflow: hidden;
-  text-align: center;
-}
-.footer ul {
-    display: table;
-    width: 100%;
-}
-.footer li {
-    /*padding: 0 30px 0;*/
-    display: table-cell;
-}
-.footer .toTop{
-    position: relative;
-    top: -20px;
-    left: 28px;
-}
-.redActive{
-      color:#289bf3;
-}
-
-</style>
 
 <script>
   export default {
@@ -84,3 +51,44 @@
       }
   }
 </script>
+
+<style>
+    /*footer*/
+.footer {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background-color: white;
+  color:#737070;
+  border-top:1px solid #ccc;
+  position: fixed;
+  bottom: 0;
+  overflow: hidden;
+  text-align: center;
+}
+.footer ul {
+    display: table;
+    width: 100%;
+}
+.footer li {
+    /*padding: 0 30px 0;*/
+    display: table-cell;
+}
+
+.footer li a {
+    height: 100%;
+    display: inline-block;
+}
+
+.footer .toTop{
+    position: relative;
+    top: -20px;
+    left: 28px;
+}
+.redActive{
+      color:#289bf3;
+}
+
+
+</style>
+

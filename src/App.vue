@@ -7,14 +7,15 @@
       >
     <my-header></my-header>
     </transition>-->
-
-    
     <router-view></router-view>
-    <my-footer v-on:listenPop = 'handlePop'></my-footer>
+    <MyFooter v-on:listenPop = 'handlePop'></MyFooter>
     <div class="footerPopUp">
         <div class="popActions">
             <ul>
-                <li @click = "upPhoto">相册上传</li>
+                <li @click = "upPhoto">
+                  <input type="file" />
+                  相册上传
+                </li>
                 <li @click = "upText">纯文字</li>
             </ul>
         </div>
@@ -140,9 +141,9 @@ a {
     position: fixed;
     z-index: 10001;
     width: 96%;
-    height: 180px;
+    height: 147px;
     margin: 1% 2%;
-    /* border-radius: 50px; */
+    border-radius: 20px;
     text-align: center;
     top: 100%;
 }
@@ -152,7 +153,7 @@ a {
     height: 60%;
     background: white;
     border-radius: 20px;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
     opacity: 0.9;
     position: relative;
 }
@@ -165,9 +166,10 @@ a {
 
 .popActions ul li {
     width: 100%;
-    height: 54px;
-    line-height: 54px;
+    height: 45px;
+    line-height: 45px;
     margin: 0;
+    
 }
 
 .popActions ul li:first-child {
@@ -176,10 +178,21 @@ a {
 
 .popCancel {
     width: 100%;
-    height: 52px;
+    height: 40px;
     background: white;
-    border-radius: 10px;
+    border-radius: 9px;
     opacity: 0.9;
-    line-height: 52px;
+    line-height: 40px;
+}
+
+input[type = 'file'] {
+      opacity: 0;
+      float: left;
+      position: absolute;
+      width: 100%;
+      height: 45px;
+      z-index: 99;
+      margin: 0 auto;
+      margin-left: -41%;
 }
 </style>

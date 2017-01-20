@@ -1,22 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import routes from './routers.js'
-import './assets/css/base.css'
-
+import routes from './router/routers.js'
+import 'core-js/fn/promise';
 const FastClick = require('fastclick')
 FastClick.attach(document.body)
 
-import axios from 'axios'
+import './assets/css/base.css'
+
+// import axios from 'axios'
 // import VueAxios from 'vue-axios'
-var Promise = require('es6-promise').polyfill();
+// var Promise = require('es6-promise').polyfill();
 
-var Axios = axios.create({
-  promise: Promise
-});
-
- 
-// Vue.use(VueAxios, axios)
-Vue.use(Axios)
+// var Axios = axios.create({
+//   promise: Promise
+// });
+// Vue.use(axios)
 Vue.use(VueRouter)
 
 let router = new VueRouter({
