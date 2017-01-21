@@ -119,12 +119,14 @@
     width: 100%;
     margin: 0 auto;
     text-align: center;
+    display: flex;
 }
 
 .bottomDiv>ul li {
     display: inline-block;
     margin: 0 10px;
     padding: 10px 20px;
+    flex: 1;
 }
 
 .profileHeader>ul{
