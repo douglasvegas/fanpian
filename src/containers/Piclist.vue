@@ -98,12 +98,14 @@ var Axios = axios.create({
 
 .imgList {
     padding: 10px 5px;
-    color:rgba(255, 255, 255, 0.9)
+    color:rgba(255, 255, 255, 0.9);
 }
 
 .imgList>li {
     padding-bottom: 7px;
-    position: relative
+    position: relative;
+    width: 100%;
+    margin:0;
 }
 
 .imgList img {
@@ -127,7 +129,7 @@ var Axios = axios.create({
     text-overflow: ellipsis;
     position: absolute;
     top: 12px;
-    width: 100%;
+    width: 90%;
     left: 16px;
     text-shadow: 1px 1px 4px rgb(10, 10, 10);
 }
@@ -143,10 +145,7 @@ var Axios = axios.create({
     bottom: 1rem;
     font-size: 0.8rem;
 }
-.fill-footer {
-    width: 100%;
-    height: 34px;
-}
+
 
 h1, h2 {
   font-weight: normal;
@@ -159,7 +158,6 @@ ul {
 
 li {
   display: inline-block;
-  margin: 0 10px;
 }
 
 a {

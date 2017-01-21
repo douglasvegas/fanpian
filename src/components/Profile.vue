@@ -124,7 +124,7 @@
 .bottomDiv>ul li {
     display: inline-block;
     margin: 0 10px;
-    padding: 2% 7%;
+    padding: 10px 20px;
 }
 
 .profileHeader>ul{
