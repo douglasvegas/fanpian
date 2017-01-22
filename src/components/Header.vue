@@ -7,11 +7,9 @@
             </div>
             <div id = "row2">
             <ul class="tabUl">
-                <li v-for="(tab,index) in tabs" @click="setCurr(index)">
-                    <router-link :to="{ path:'/test/'+tab.id }"  :class="{tabCurrent:tab.isCurr}" >
-                        {{tab.name}}
-                    </router-link>
-                </li>
+                <router-link :categories = 'categories' v-for="(tab,index) in categories"  :to="{ path:'/category/'+tab.id }"  tag="li"  active-class="tabCurrent" >
+                    {{tab.name}}
+                </router-link>
             </ul>
             </div>
         </div>
@@ -20,27 +18,27 @@
 
 </template>
 <script>
-    import Api from '../api/api.js'
+    import { mapActions } from 'vuex'
+    
     export default {
-        mounted () {
-            let _this = this;
-            let timer = setTimeout(function() {
-                _this.tabs = Api.tabs;
-                clearTimeout(timer);
-            }, 300);
+        beforeRouteEnter: (to, from, next) => {
+            // ...
+            next ((vm) => {
+                console.log("Header进不来")
+            })   
         },
-        data () {
-            return {
-                tabs: []
+        mounted () {
+            this.fetchCategories();
+        },
+        computed: {
+            categories() {
+                return this.$store.state.categories.categories;
             }
         },
         methods: {
-            setCurr: function (index) {
-                this.tabs.map(function (tab,i) {
-                    i == index ? tab.isCurr = true : tab.isCurr = false
-                    })
-                }
+            ...mapActions(['fetchCategories'])
         }
+
     }
 </script>
 

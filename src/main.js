@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import routes from './router/routers.js'
+import store from './vuex/store'
 import 'core-js/fn/promise';
 const FastClick = require('fastclick')
 FastClick.attach(document.body)
@@ -23,5 +24,6 @@ let router = new VueRouter({
 
 
 new Vue({
-  router,
+  store,
+  router
 }).$mount('#app')

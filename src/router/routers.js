@@ -4,24 +4,27 @@
 //         resolve(require('./App.vue'));
 //     });
 // };
-// const Home = resolve => require(['../containers/Home.vue'], resolve)
-// const App = resolve => require(['../App.vue'], resolve)
-// const MyContent = resolve => require(['../containers/Content.vue'], resolve)
-// const Profile = resolve => require(['../components/Profile.vue'], resolve)
+const Home = resolve => {require(['../containers/Home.vue'], resolve)}
+const App = resolve => {require(['../App.vue'], resolve)}
+const MyContent = resolve => {require(['../containers/Content.vue'], resolve)}
+const Profile = resolve => {require(['../components/Profile.vue'], resolve)}
+const Category = resolve => {require(['../components/Category.vue'], resolve)}
 
-// const Test = resolve => require(['../components/Test.vue'], resolve)
-
-import Home from '../containers/Home.vue'
-import App from '../App.vue'
-import MyContent from '../containers/Content.vue'
-import Profile from '../components/Profile.vue'
-import Test from '../components/Test.vue'
+// import Home from '../containers/Home.vue'
+// import App from '../App.vue'
+// import MyContent from '../containers/Content.vue'
+// import Profile from '../components/Profile.vue'
+// import Category from '../components/Category.vue'
 
 const routers = [
     {
         path:'/',
         component: App,
         children: [
+            {
+                path: 'profile',
+                component: Profile
+            },
             {
                 path: '/',
                 component: Home,
@@ -31,19 +34,16 @@ const routers = [
                         component: MyContent
                     },
                     {
-                        path:'/test/:id',
-                        component: Test
+                        path:'/category/:id',
+                        component: Category
                     },
-                    // {
-                    //     path: '*',
-                    //     redirect:'/'
-                    // }
+                    {
+                        path: '*',
+                        redirect:'/'
+                    }
                 ]
             },
-            {
-                path: 'profile',
-                component: Profile
-            }
+            
         ]
     }
   ]

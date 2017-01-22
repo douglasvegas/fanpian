@@ -15,10 +15,6 @@ Mock.mock('@CONSTELLATION')
 Mock.mock('@CNAME')
 Mock.mock('@csentence')
 
-// Mock.mock({
-//     constellation: '@CONSTELLATION'
-// })
-
 var data = Mock.mock({
     'picList|10-20':[{
         title:'@csentence',
@@ -32,7 +28,7 @@ var data = Mock.mock({
 })
 
 module.exports = {
-    "picList": data, 
+    "picList": data.picList, 
     "more": true, 
     "result": "SUCCESS"
 }

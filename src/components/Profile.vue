@@ -125,7 +125,7 @@
 .bottomDiv>ul li {
     display: inline-block;
     margin: 0 10px;
-    padding: 10px 20px;
+    padding: 5px 0px;
     flex: 1;
 }
 

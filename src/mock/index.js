@@ -1,9 +1,11 @@
 var users = require('./database/users')
-var picList = require('./database/picList')
+var posts = require('./database/picList')
+var categories = require('./database/categories')
 
 module.exports = function () {
     return {
         'users': users,
-        'picList': picList
+        'posts': posts,
+        'categories':categories
     }
 }

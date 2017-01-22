@@ -16,6 +16,12 @@
 <script>
 import MyHeader from '../components/Header.vue'
 export default {
+    beforeRouteEnter: (to, from, next) => {
+        // ...
+        next(vm => {
+            console.log("Home进来了")
+        })
+    },
     components: {
         MyHeader
     },

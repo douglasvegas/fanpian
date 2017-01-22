@@ -2,7 +2,7 @@
     <div class = "picList">
         <div>
             <ul class="imgList">
-                <PicItem v-for = 'info in infos' :info = 'info'></PicItem>
+                <PicItem :posts = 'posts'  v-for = 'info in posts'  :info = 'info' ></PicItem>
             </ul>
         </div>
         <div class="fill-footer"></div>
@@ -11,83 +11,29 @@
 
 <script>
 import PicItem from '../components/PicItem.vue'
-var axios = require('axios');
-var Promise = require('es6-promise').polyfill();
-var Axios = axios.create({
-  promise: Promise
-});
-  export default {
-       components: {
-           PicItem
-       },
-        mounted () {
-            var _this = this;
-            Axios.get('http://localhost:3000/picList')
-                .then(function (response) {
-                    console.log(response)
-                    if (response.status == 200 && response.data.picList.picList.length > 0) {
-                        _this.infos = response.data.picList.picList
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        }, 
-        data () {
-          return {
-            infos: [
-                    {
-                        title:'测试1',
-                        author:'作者1',
-                        src : 'src/assets/img/1.jpg',
-                        scanCount: 123,
-                        commentCount: 65,
-                        praiseCount: 22
-                    },
-                    {
-                        title:'测试2',
-                        author:'作者2',
-                        src : 'src/assets/img/2.jpg',
-                        scanCount: 123,
-                        commentCount: 65,
-                        praiseCount: 22
-                    },
-                    {
-                        title:'测试3',
-                        author:'作者1',
-                        src : 'src/assets/img/3.jpg',
-                        scanCount: 222,
-                        commentCount: 12,
-                        praiseCount: 33
-                    },
-                    {
-                        title:'测试4',
-                        author:'作者4',
-                        src : 'src/assets/img/4.jpg',
-                        scanCount: 123,
-                        commentCount: 65,
-                        praiseCount: 22
-                    },
-                    {
-                        title:'测试1',
-                        author:'作者1',
-                        src : 'src/assets/img/5.jpg',
-                        scanCount: 123,
-                        commentCount: 65,
-                        praiseCount: 22
-                    },
-                    {
-                        title:'测试1',
-                        author:'作者1',
-                        src : 'src/assets/img/6.jpg',
-                        scanCount: 123,
-                        commentCount: 65,
-                        praiseCount: 22
-                    }
-                ]
-            }
-      }
-  }
+import { mapActions } from 'vuex'
+
+export default {
+    components: {
+        PicItem
+    },
+    mounted () {
+        this.fetchPostsByCategory();
+    }, 
+    computed: {
+        posts() {
+            return this.$store.state.posts.posts
+        }
+    },
+    methods: {
+        ...mapActions(['fetchPostsByCategory'])
+    },
+    // data () {
+    //     return {
+    //         infos: []
+    //     }
+    // }
+}
 </script>
 
 <style>
