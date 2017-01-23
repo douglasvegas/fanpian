@@ -14,6 +14,12 @@ import PicItem from '../components/PicItem.vue'
 import { mapActions } from 'vuex'
 
 export default {
+    props: ['shouldLoadMore'],
+    watch: {
+        shouldLoadMore: function (value) {
+            console.log('变成' + value);
+        }
+    },
     components: {
         PicItem
     },
@@ -27,19 +33,15 @@ export default {
     },
     methods: {
         ...mapActions(['fetchPostsByCategory'])
-    },
-    // data () {
-    //     return {
-    //         infos: []
-    //     }
-    // }
+    }
 }
 </script>
 
 <style>
-.picList {
-    height: auto;
-    width: 100%;  
+.picList { 
+    height: 100%;
+    width: 100%;
+    overflow: auto;
 }
 
 .imgList {

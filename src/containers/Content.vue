@@ -1,11 +1,16 @@
 <template>
-    <div @touchstart= 'handleTouchStart' 
-         @touchmove = 'handleTouchMove'
-         @touchend  = 'handleTouchEnd'
-    >
-        <MySwipe></MySwipe>
-        <MyPlist></MyPlist>
+    // <div @touchstart= 'handleTouchStart' 
+    //      @touchmove = 'handleTouchMove'
+    //      @touchend  = 'handleTouchEnd'
+    //      @scroll = 'scroll'
+    // >
+    <div id="scrollView">
+        <div @scroll = 'scroll' id = 'scrollContent'>
+            <MySwipe></MySwipe>
+            <MyPlist :shouldLoadMore = 'shouldLoadMore'></MyPlist>
+        </div>
     </div>
+    
 </template>
 
 <script>
@@ -20,37 +25,49 @@ export default {
     },
     data () {
         return {
-            msg:'2',
-            start:'',
-            end: ''
+            shouldLoadMore: false
         }
     },
     methods : {
-        handleTouchStart: function (e) {
-            var _y=e.changedTouches[0].pageY;
-            this.start = _y;
+        clickHandle: function () {
+            this.shouldLoadMore = true;
         },
-        handleTouchMove: function (e) {
-            var _x=e.changedTouches[0].pageX;
-            var _y=e.changedTouches[0].pageY;
-            
-            this.msg = parseInt(this.end) - parseInt(this.start);
-            
-            if (this.msg > 160) {
-                this.$emit('changeLoading')
-            }
+        scroll: function () {
+            alert('滑动了')
+            // this.shouldLoadMore = true;
         },
-        handleTouchEnd: function (e) {
-            var _x=e.changedTouches[0].pageX;
-            var _y=e.changedTouches[0].pageY;
+        // handleTouchStart: function (e) {
+        //     var _y=e.changedTouches[0].pageY;
+        //     this.start = _y;
+        // },
+        // handleTouchMove: function (e) {
+        //     var _x=e.changedTouches[0].pageX;
+        //     var _y=e.changedTouches[0].pageY;
+            
+        //     this.msg = parseInt(this.end) - parseInt(this.start);
+            
+        //     if (this.msg > 160) {
+        //         this.$emit('changeLoading')
+        //     }
+        // },
+        // handleTouchEnd: function (e) {
+        //     var _x=e.changedTouches[0].pageX;
+        //     var _y=e.changedTouches[0].pageY;
 
-            this.end = _y;
-            this.msg = parseInt(this.end) - parseInt(this.start);
+        //     this.end = _y;
+        //     this.msg = parseInt(this.end) - parseInt(this.start);
             
-            console.log(parseInt(this.end) - parseInt(this.start));
-            this.$emit('resetLoading')
-            // this.msg = _y;
-        }
+        //     this.$emit('resetLoading')
+        // }
     }
 }
 </script>
+
+<style>
+#scrollView {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+</style>

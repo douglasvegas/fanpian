@@ -7,7 +7,7 @@
                     {{msg}}
                 </div>
             </div>
-            <router-view v-on:changeLoading = 'changeLoad'v-on:resetLoading = 'restLoad'>
+            <router-view v-on:changeLoading = 'changeLoad' v-on:resetLoading = 'restLoad'>
             </router-view>
         </div>
     </div>
@@ -32,6 +32,9 @@ export default {
         }
     },
     methods: {
+        scroll: function () {
+            console.log(123)
+        },
         changeLoad: function () {
             this.msg = '松手加载更多内容';
             this.isShow = true;
