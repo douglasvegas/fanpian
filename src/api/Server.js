@@ -1,5 +1,11 @@
 import axios from 'axios'
 import CONFIG from './CONFIG'
+import 'core-js/fn/promise';
+var Promise = require('es6-promise').polyfill();
+
+var Axios = axios.create({
+  promise: Promise
+});
 
 class Server {
     request(url, type, data) {
@@ -12,10 +18,10 @@ class Server {
         return this.get(url ,data)
     }
     get(url, data) {
-        return axios.get(url,{params:data});
+        return Axios.get(url,{params:data});
     }
     post(url, data) {
-        return axios.post(url,data);
+        return Axios.post(url,data);
     }
 
     fetchPostsByCategory () {
