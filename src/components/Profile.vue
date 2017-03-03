@@ -12,12 +12,12 @@
             <div class="profileItem">
                 <div class="topDiv">
                     <div class="isLeft">
-                        <img src="http://p3.pstatp.com/large/4d0008d1c73fa6ee1f" class="avatar" />
+                        <img :src = user.avatar  class="avatar" />
                     </div>
                     <div class="isRight">
-                        <p>DouglasVegas</p>
+                        <p>{{user.name}}</p>
                         <br />
-                        <p>123</p>
+                        <p>{{user.age}}</p>
                     </div>
                 </div>
                 <div class="bottomDiv">
@@ -27,27 +27,59 @@
                             <p>收藏</p>
                         </li>
                         <li class="middle">
-                            <span>55</span>
+                            <span>{{count[0]}}</span>
                             <p>关注</p>
                         </li>
                         <li>
-                            <span>90</span>
+                            <span>{{count[1]}}</span>
                             <p>粉丝</p>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-        
+        <p class="logout" @click='toLogout'>
+            退出
+        </p>
         
     </div>
 </template>
 
 <script>
-    export default {
-        data () {
-            return {
+    import axios from 'axios'
+    axios.defaults.withCredentials = true
+    import { mapActions } from 'vuex'
 
+    export default {
+        mounted () {
+            var _this = this;
+            if (document.cookie.indexOf('fanpian') == -1) {
+                 this.$router.push('/signin') 
+            }else {
+                this.fetchUser();
+                this.fetchCount();
+            }
+        },
+        computed: {
+            user() {
+                return this.$store.state.user.user
+            },
+            count() {
+                return this.$store.state.user.count
+            }
+
+        },
+        methods: {
+            ...mapActions({fetchCount:'fetchCount',fetchUser:'fetchUser'}),
+            toLogout: function () {
+                var _this = this;
+                axios.post('http://localhost:3000/logout').then(function (result) {
+                    if (result.status == 200 && result.data.code == 200) {
+                        _this.$router.push('/sigin')  
+                    }
+                }).catch(function(err){
+                    console.log(err)
+                })
             }
         }
     }
@@ -171,6 +203,18 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
+}
+
+p.logout {
+    text-align: center;
+    padding: 15px;
+    background: #1890ec;
+    color: white;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 10px;
+    font-size: 16px;
+    margin-top: 25px;
 }
 
 </style>

@@ -1,24 +1,19 @@
 <template>
     <div class="footer">
         <ul>
-            <li :class="{tabCurrent:activeFooter.isLeft}" @click = "changeActive('left')">
-                <router-link to="/">
-                    <i class="toTop fa fa-compass"></i>
-                    <span>发现</span>
-                </router-link>
-            </li>
+            <router-link to="/"  tag='li' active-class='active'>
+                <i class="toTop fa fa-compass"></i>
+                <span>发现</span>
+            </router-link>
             <li class="redActive">
                 <i class="fa fa-plus-circle fa-3x" @click = "toWrite"></i>
                 <!--<span>中.</span>-->
             </li>
-            <li :class="{tabCurrent:activeFooter.isRight}" @click = "changeActive('right')">
-                <router-link to = '/profile'>
-                    <i class="toTop fa fa-gear"></i>
-                    <span>我的</span>
-                </router-link>
-            </li>
+            <router-link to = '/profile' tag='li' active-class='active'>
+                <i class="toTop fa fa-gear"></i>
+                <span>我的</span>
+            </router-link>
         </ul>
-        
     </div>
 </template>
 
@@ -34,17 +29,6 @@
           }
       },
       methods: {
-          changeActive: function (str) {
-              if (str === 'left') {
-                  this.activeFooter.isLeft = true;
-                  this.activeFooter.isRight = false;
-              }
-              if (str === 'right') {
-                  this.activeFooter.isRight = true;
-                  this.activeFooter.isLeft = false;
-              }
-          },
-
           toWrite: function () {
               this.$emit("listenPop")
           }
@@ -85,8 +69,14 @@
     top: -20px;
     left: 28px;
 }
+.footer .active{
+    color: #289bf3;
+}
 .redActive{
       color:#289bf3;
+}
+.tabCurrent a {
+    color: #289bf3;
 }
 
 

@@ -19,7 +19,6 @@
             </li>
         </ul>
     </div>
-    
 </li>
 </template>
 

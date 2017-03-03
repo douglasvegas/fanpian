@@ -12,8 +12,10 @@
     <div class="footerPopUp">
         <div class="popActions">
             <ul>
-                <li @click = "upPhoto">
-                  <input type="file" />
+                <li>
+                <form action=""  id="formData1">
+                  <input type="file" class="uploadImg" @change='upPhoto' name="uploadImg"/>
+                </form>
                   相册上传
                 </li>
                 <li @click = "upText">纯文字</li>
@@ -35,6 +37,11 @@ import MyFooter from './components/Footer.vue'
 import Velocity from 'velocity-animate'
 import VueRouter from 'vue-router'
 
+import axios from 'axios'
+axios.defaults.withCredentials = true
+
+import { mapActions } from 'vuex'
+
 let router = new VueRouter()
 export default {
   name: 'app',
@@ -50,6 +57,7 @@ export default {
     'msg': 'handleChange'
   },
   methods: {
+    ...mapActions({ pushNewImg:'pushNewImg' }),
     beforeEnter: function (el) {
       el.style.opacity = 0
     },
@@ -85,11 +93,25 @@ export default {
 
       document.querySelector(".globalMask").style.top = '100%';
     },
-    upPhoto: function () {
-      console.log("上传图片");
-      router.replace({ path: '/profile' })
-
+    upPhoto: function (e) {
+      
+      var myForm = document.getElementById('formData1');
+      var formData = new FormData(myForm);
+      this.pushNewImg(formData)
+      router.replace({ path: '/post/create/0' })
+      // axios.post('http://localhost:3000/uploadImg',formData)
+      //   .then(function (result) {
+      //     if (result.status == 200 && result.data.code == 200) {
+      //       var imgUrl = result.data.imgUrl;
+      //       console.log(imgUrl)
+      //       router.replace({ path: '/post/create/0' })
+      //     }
+      //   })
+      //   .catch( function (err) {
+      //     console.log(err)
+      //   })
       this.popBack();
+
     },
     upText: function () {
       // router.go(-1)
@@ -120,9 +142,7 @@ li {
   margin: 0;
 }
 
-a {
-  color: #42b983;
-}
+
 
 .globalMask {
     width: 100%;
@@ -185,7 +205,7 @@ a {
     line-height: 40px;
 }
 
-input[type = 'file'] {
+.popActions input[type = 'file'] {
       opacity: 0;
       float: left;
       position: absolute;

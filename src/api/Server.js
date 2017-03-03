@@ -32,6 +32,18 @@ class Server {
         return this.get(CONFIG.FETCH_CATEGORIES_URL)
     }
 
+    fetchUserInfo () {
+        return this.post(CONFIG.FETCH_USERINFO)
+    }
+
+    fetchCount () {
+        return this.post(CONFIG.FETCH_COUNT)
+    }
+
+    postImg (data) {
+        return this.post(CONFIG.UPLOAD_IMG,data)
+    }
+
 }
 
 export default new Server;

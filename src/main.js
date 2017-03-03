@@ -16,6 +16,12 @@ import './assets/css/base.css'
 //   promise: Promise
 // });
 // Vue.use(axios)
+
+// import axios from 'axios'
+// import VueAxios from 'vue-axios'
+ 
+// Vue.use(VueAxios, axios)
+
 Vue.use(VueRouter)
 
 let router = new VueRouter({

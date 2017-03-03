@@ -9,6 +9,9 @@ const App = resolve => {require(['../App.vue'], resolve)}
 const MyContent = resolve => {require(['../containers/Content.vue'], resolve)}
 const Profile = resolve => {require(['../components/Profile.vue'], resolve)}
 const Category = resolve => {require(['../components/Category.vue'], resolve)}
+const Signup = resolve => {require(['../components/Signup.vue'], resolve)}
+const Sigin = resolve => {require(['../components/Sigin.vue'], resolve)}
+const Post = resolve => {require(['../components/Post.vue'], resolve)}
 
 // import Home from '../containers/Home.vue'
 // import App from '../App.vue'
@@ -18,9 +21,21 @@ const Category = resolve => {require(['../components/Category.vue'], resolve)}
 
 const routers = [
     {
+        path: '/post/:action/:id',
+        component: Post
+    },
+    {
         path:'/',
         component: App,
         children: [
+            {
+                path: 'signup',
+                component: Signup
+            },
+            {
+                path: 'signin',
+                component: Sigin
+            },
             {
                 path: 'profile',
                 component: Profile
