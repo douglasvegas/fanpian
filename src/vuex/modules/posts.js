@@ -1,24 +1,24 @@
-import Server from 'Server'
-
+import Server from 'Server';
+import '../../common/Common';
 const state = {
     posts: [],
     imgUrl : ''
 }
 
 const mutations = {
-    FETCH_POST_BY_CATEGORY(state, posts) {
+    FETCH_HOT_POSTS(state, posts) {
         state.posts = posts;
     },
     UPDATA_POST_IMG(state, imgUrl) {
-        state.imgUrl = 'http://localhost:3000/upload/' + imgUrl
+        state.imgUrl = API_ROOT + '/upload/' + imgUrl
     }
 }
 
 const actions = {
-    fetchPostsByCategory({commit}, categoryId) {
-        Server.fetchPostsByCategory(categoryId).then((res) => {
+    fetchHotPosts({commit}) {
+        Server.fetchHotPosts().then((res) => {
             if (res.data) {
-                commit('FETCH_POST_BY_CATEGORY', res.data.picList)
+                commit('FETCH_HOT_POSTS', res.data)
             }
         })
     },

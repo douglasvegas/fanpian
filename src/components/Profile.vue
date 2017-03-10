@@ -46,10 +46,10 @@
 </template>
 
 <script>
-    import axios from 'axios'
+    import axios from 'axios';
     axios.defaults.withCredentials = true
     import { mapActions } from 'vuex'
-
+    var API_ROOT = 'http://www.douglasvegas.com/api';
     export default {
         mounted () {
             var _this = this;
@@ -73,7 +73,7 @@
             ...mapActions({fetchCount:'fetchCount',fetchUser:'fetchUser'}),
             toLogout: function () {
                 var _this = this;
-                axios.post('http://localhost:3000/logout').then(function (result) {
+                axios.post(API_ROOT+'/logout').then(function (result) {
                     if (result.status == 200 && result.data.code == 200) {
                         _this.$router.push('/sigin')  
                     }

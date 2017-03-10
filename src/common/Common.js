@@ -1,0 +1,1 @@
+global.API_ROOT = 'http://www.douglasvegas.com/api';

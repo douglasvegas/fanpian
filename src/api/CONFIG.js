@@ -1,13 +1,16 @@
-const BASE_URL = 'http://localhost:3000';
+// const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'http://www.douglasvegas.com/api';
+
 
 const convertURL = (URL) => BASE_URL + URL;
 
 const CONFIG = {
-    FETCH_POST_URL: '/posts',
-    FETCH_CATEGORIES_URL: '/categories',
+    FETCH_HOT_POST_URL: '/post/hot',
+    FETCH_CATEGORIES_URL: '/category',
     FETCH_USERINFO: '/user',
     FETCH_COUNT : '/follow/getCount',
-    UPLOAD_IMG : '/uploadImg'
+    UPLOAD_IMG : '/uploadImg',
+    FETCH_POST_BY_CATEID: '/post'
 }
 
 const convertConfig = (CONFIG) => {

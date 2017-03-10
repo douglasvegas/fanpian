@@ -3,7 +3,7 @@
     <section>
         <div class="postHeader">
             <ul>
-                <li>返回</li>
+                <li @click='back'>返回</li>
                 <li class="middle">编辑</li>
                 <li>完成</li>
             </ul>
@@ -12,10 +12,14 @@
         
         <div>
             <div class="imgWrap">
-                <img :src= imgUrl v-model='imgUrl' />
+                <img :src = "posts.imgUrl" />
             </div>
             <div class="postContent">
                 <div style="text-align: center;">
+                    <select name="category" id="" @change = 'onSelect'>
+                        <option value="0">请选择分类</option>
+                        <option v-for = 'cate in categories.categories' :value = "cate.categoryId" >{{cate.name}}</option>
+                    </select>
                     <input type="text" placeholder="请输入标题" v-model='title' />
                     <textarea name="" id=""  v-model='content' style="width: 92%;height: 200px;outline: none;resize: none;margin: 0 auto;margin-top: 10px;"></textarea>
                 </div>
@@ -29,37 +33,47 @@
 </template>
 
 <script>
-import axios from 'axios'
- axios.defaults.withCredentials = true
+import { mapState } from 'vuex'
 
  export default {
      data () {
         return {
-            title:'',
-            content:'',
-            imgUrl:''
+            title : '',
+            content : '',
+            imgUrl : '',
+            cateId : 0
+            
         }
      },
      computed: {
-        imgUrl() {
-                return this.$store.state.posts.imgUrl
-            },
+         ...mapState(['posts','categories'])
      },
      methods: {
-         
+        onSelect: function () {
+            var id = document.querySelector('select').value;
+            this.cateId = id;
+        },
+        back: function () {
+          this.$router.go(-1)  
+        },
         toPost: function () {
+            var _this = this;
             var data = {
                 title: this.title,
                 content: this.content,
-                imgUrl: this.imgUrl.split('/').pop()
+                imgUrl: this.posts.imgUrl
             }
             var oMyForm = new FormData();
             oMyForm.append('title',this.title)
             oMyForm.append('content',this.content)
-            oMyForm.append('imgUrl',this.imgUrl.split('/').pop())
-            axios.post('http://localhost:3000/post',data)
+            oMyForm.append('imgUrl',this.posts.imgUrl)
+            oMyForm.append('cateId',this.cateId)
+            this.axios.post(API_ROOT+'/post',oMyForm)
                 .then(function (result) {
-                    console.log(result)
+                    if (result.status == 200 && result.data.code == 200) {
+                        var url = '/post/' + result.data.data._id;
+                        _this.$router.push(url)
+                    }
                 })
                 .catch(function (err) {
                     console.log(err)
@@ -71,7 +85,7 @@ import axios from 'axios'
 
 </script>
 
-<style>
+<style scoped>
 
 .postHeader {
     position: fixed;
@@ -150,5 +164,15 @@ import axios from 'axios'
     margin: 10px;
     font-size: 18px;
     line-height: 30px;
+}
+select[name='category'] {
+    background: transparent;
+    width: 92%;
+    padding: 6px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    height: 34px;
+    margin-top: 20px;
+    -webkit-appearance: none;
 }
 </style>

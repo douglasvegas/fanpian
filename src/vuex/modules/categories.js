@@ -14,7 +14,7 @@ const actions = {
     fetchCategories({commit}){
         Server.fetchCategories().then((res) => {
             if (res.data) {
-                commit('FETCH_CATEGORIES', res.data.categories)
+                commit('FETCH_CATEGORIES', res.data)
             }
         })
     }

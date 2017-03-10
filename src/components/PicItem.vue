@@ -1,13 +1,13 @@
 <template>
 <li class="imgItem">
-    <img :src = "info.src" />
-    <div class="wrapContent">
+    <img :src = "info.imgUrl" />
+    <div class="wrapContent" @click='toPost(info._id)'>
         <p>{{info.title}}</p>
-        <span>{{info.author}}</span>
+        <span>{{info.author.name}}</span>
         <ul>
             <li>
                 <i class="toTop fa fa-eye"></i>
-                <span>{{info.scanCount}}</span>
+                <span>{{info.pv}}</span>
             </li>
             <li>
                 <i class="toTop fa fa-thumbs-up"></i>
@@ -24,6 +24,14 @@
 
 <script>
     export default {
-        props: ['info']
+        props: ['info'],
+        methods: {
+            toPost: function (id) {
+                this.$router.push('/post/'+ id)
+            }
+        }
     }
 </script>
+<style scoped>
+    
+</style>

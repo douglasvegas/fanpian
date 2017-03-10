@@ -6,10 +6,10 @@
 
  <div id="formWrap">
     <form action="" class="postSignup" id="formData">
-        <input type="text" placeholder="请填写姓名" name="name"><br />
-        <input type="password" placeholder="密码" name="password"><br />
-        <input type="number" placeholder="手机号" maxlength="11" name="phone"><br />
-        <input type="number" placeholder="年龄" maxlength="2" name="age"><br />
+        <input type="text" placeholder="请填写姓名" name="name" autocomplete="off"><br />
+        <input type="password" placeholder="密码" name="password" autocomplete="off"><br />
+        <input type="number" placeholder="手机号" maxlength="11" name="phone" autocomplete="off"><br />
+        <input type="number" placeholder="年龄" maxlength="2" name="age" autocomplete="off"><br />
         <select name="gender" id="">
             <option value="m">男</option>
             <option value="f">女</option>
@@ -32,7 +32,7 @@
                 var myForm = document.getElementById('formData');
                 var formData = new FormData(myForm);
 
-                axios.post('http://localhost:3000/signup',formData)
+                this.axios.post(API_ROOT+'/signup',formData)
                     .then(function (result) {
                         var json = JSON.parse(result.request.responseText)
                         if (json.code == 200) {

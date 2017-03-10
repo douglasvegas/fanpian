@@ -38,7 +38,7 @@ import Velocity from 'velocity-animate'
 import VueRouter from 'vue-router'
 
 import axios from 'axios'
-axios.defaults.withCredentials = true
+
 
 import { mapActions } from 'vuex'
 
@@ -98,23 +98,12 @@ export default {
       var myForm = document.getElementById('formData1');
       var formData = new FormData(myForm);
       this.pushNewImg(formData)
-      router.replace({ path: '/post/create/0' })
-      // axios.post('http://localhost:3000/uploadImg',formData)
-      //   .then(function (result) {
-      //     if (result.status == 200 && result.data.code == 200) {
-      //       var imgUrl = result.data.imgUrl;
-      //       console.log(imgUrl)
-      //       router.replace({ path: '/post/create/0' })
-      //     }
-      //   })
-      //   .catch( function (err) {
-      //     console.log(err)
-      //   })
+      // router.replace({ path: '/post/create/0' })
+      this.$router.push('/post/create/0')
       this.popBack();
 
     },
     upText: function () {
-      // router.go(-1)
 
       router.push({ path: '/test/5'})
       console.log("上传文字");

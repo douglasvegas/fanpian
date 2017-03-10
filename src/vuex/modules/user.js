@@ -1,4 +1,6 @@
-import Server from 'Server'
+import Server from 'Server';
+// import '../../common/Common';
+var API_ROOT = 'http://www.douglasvegas.com/api';
 var moment = require('moment')
 const state = {
     user: [],
@@ -20,7 +22,7 @@ const actions = {
             if (result.status == 200) {
                 var json = JSON.parse(result.request.responseText);
                 json.create_date = moment(json.create_date).format().replace('T',' ').split('+')[0];
-                json.avatar = 'http://localhost:3000/upload/'+ json.avatar
+                json.avatar = API_ROOT + '/upload/'+ json.avatar
                 commit('FETCH_USER', json)
             }
         })

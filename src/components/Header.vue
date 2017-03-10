@@ -2,12 +2,12 @@
     <div>
         <div id="header">
             <div id = "row1">
-            <span>翻篇</span>
+            <span>翻篇6</span>
             <input type="text" class="topSearch" placeholder="请搜索用户和文章" />
             </div>
             <div id = "row2">
             <ul class="tabUl">
-                <router-link :categories = 'categories' v-for="(tab,index) in categories"  :to="{ path:'/category/'+tab.id }"  tag="li"  active-class="tabCurrent" >
+                <router-link :categories = 'categories' v-for="(tab,index) in categories"  :to="{ path:'/category/'+tab.categoryId }"  tag="li"  active-class="tabCurrent" >
                     {{tab.name}}
                 </router-link>
             </ul>

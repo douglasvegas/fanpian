@@ -24,7 +24,7 @@ export default {
         PicItem
     },
     mounted () {
-        this.fetchPostsByCategory();
+        this.fetchHotPosts();
     }, 
     computed: {
         posts() {
@@ -32,7 +32,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['fetchPostsByCategory'])
+        ...mapActions(['fetchHotPosts'])
     }
 }
 </script>

@@ -23,13 +23,19 @@ class Server {
     post(url, data) {
         return Axios.post(url,data);
     }
-
-    fetchPostsByCategory () {
-        return this.get(CONFIG.FETCH_POST_URL)
+    //获取首页热门文章
+    fetchHotPosts () {
+        return this.post(CONFIG.FETCH_HOT_POST_URL)
+    }
+    //根据cateId获取文章列表
+    fetchPostsByCateId () {
+        return this.post(CONFIG.FETCH_POST_BY_CATEID)
     }
 
+
+
     fetchCategories () {
-        return this.get(CONFIG.FETCH_CATEGORIES_URL)
+        return this.post(CONFIG.FETCH_CATEGORIES_URL)
     }
 
     fetchUserInfo () {

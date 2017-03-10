@@ -8,7 +8,8 @@
     <form action="" id="formData">
         <input type="text" name="name" autocomplete="off"><br />
         <input type="password" name="password" autocomplete="off"><br />
-        <input type="button" value = '提交' @click = 'toLogin' class="postButton"/>
+        <input type="button" value = '登录' @click = 'toLogin' class="postButton"/>
+        <input type="button" value = '去注册' @click = 'toSignup' class="postButton"/>
         <div class="mask"></div>
     </form>
 </div>
@@ -21,13 +22,15 @@
     axios.defaults.withCredentials = true
     export default {
         methods: {
-            
+            toSignup: function () {
+                this.$router.push('/signup')
+            },
             toLogin: function () {
                 var _this = this;
                 var myForm = document.getElementById('formData');
                 var formData = new FormData(myForm);
 
-                axios.post('http://localhost:3000/signin',formData)
+                this.axios.post(API_ROOT + '/signin',formData)
                     .then(function (result) {
                         if (result.status == 200) {
                             var json = JSON.parse(result.request.responseText)
@@ -94,7 +97,7 @@ input{
 }
 #formData .mask {
     width: 100%;
-    height: 203px;
+    height: 266px;
     background: #ccc;
     opacity: 0.3;
     position: absolute;
