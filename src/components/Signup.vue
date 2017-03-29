@@ -265,14 +265,12 @@
             //提交时再校验
             handlePostValidate() {
                 for (let key in this.ruleResult) {
-                    // console.log(this.ruleResult[key] )
                     if (this.ruleResult[key] !== false) {
                         console.log(this.ruleResult[key] )
                         this.errText = '你确定' + this.fieldName[key] + '写对了么？';
                         return false;
                     }
                 }
-                return;
                 //校验
                 if (!document.querySelector('input[name="avatar"]').value) {
                     this.errText = '请选择头像';
