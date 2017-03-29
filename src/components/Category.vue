@@ -10,6 +10,7 @@
 </template>
 
 <script>
+    // var API_ROOT = 'http://www.douglasvegas.com/api' ;
     import PicItem from './PicItem.vue'
     import axios from 'axios';
     export default {
@@ -40,8 +41,13 @@
                 var postUrl = API_ROOT + '/post/cate/' + id;
                 var _this = this;
                 this.axios.post(postUrl).then(function (result) {
-                    console.log(result)
                     if (result.status == 200 && result.data.length > 0) {
+                        var res = result.data;
+                        res.map(function (v, i) {
+                            if(v.imgUrl){
+                                v.imgUrl = API_ROOT + v.imgUrl
+                            }
+                        })
                         _this.posts = result.data;
                     } else {
                         _this.posts = []

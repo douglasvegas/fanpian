@@ -25,6 +25,13 @@
         <h2> 
         {{title}}
         </h2>
+        <div class="tagDiv">
+            <ul class="tagUl">
+                <li style="background: darkorange;"class="tagLi" v-if = 'type == 0'>图文模式</li>
+                <li style="background: darkorange;"class="tagLi" v-if= 'type == 1'>文字模式</li>
+                <li style="background: darkseagreen;" class="tagLi">{{cateName}}</li>
+            </ul>
+        </div>
         <div class="postInfo">
             <span style="color:#aaa">{{time}}</span>
             <a href="javascript:;">{{author}}</a>
@@ -84,7 +91,9 @@
                 keep:0,
 
                 isLike:0, //判断是否点赞收藏
-                isKeep:0
+                isKeep:0,
+
+                cateName:'未知'
             }
         },
         components: {
@@ -112,6 +121,8 @@
                         _this.isKeep = json.isKeep;
 
                         _this.type = json.type;
+
+                        _this.getCateName(json.cateId);
                     }
                 })
                 .catch(function (err) {
@@ -132,6 +143,23 @@
             toComment: function () {
                 var id = this.$route.params.id;
                 this.$router.push( '/comment/' + id );
+            },
+            getCateName: function (id) {
+                var cates = this.$store.state.categories.categories;
+                if(cates) {
+                    cates.map( (v,i) => {
+                        if (v.categoryId == id) {
+                            console.log(v.name)
+                            this.cateName = v.name;
+                            return v.name;
+                        }
+                    })
+                }else{
+                    _this.cateName = '未知';
+                    return '未知';
+                }
+                
+                
             },
             popConfig: function (text) {
                 this.configPop = {
@@ -319,5 +347,19 @@
    }
     .postTips li:first-child {
         padding-left: 0;
+    }
+    .tagDiv {
+        padding: 8px 0;
+    }
+    .tagUl {
+        list-style-type: none;
+        padding: 0;
+    }
+    .tagLi{
+        padding: 2px 6px;
+        border-radius: 5px;
+        color: white;
+        display: inline-block;
+        margin: 0;
     }
 </style>
