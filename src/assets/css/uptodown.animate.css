@@ -1,0 +1,28 @@
+.uptodown-enter-active {
+    animation: uptodown-in .5s;
+}
+.uptodown-leave-active {
+    animation: uptodown-out .5s;
+}
+@keyframes uptodown-in {
+  /*0% {
+    transform: translate(0, -100px);
+  }*/
+  from{
+    transform: translate(0, -50px);
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+@keyframes uptodown-out {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(0, -50px);
+  }
+  /*100% {
+    transform: translate(0, -100px);
+  }*/
+}

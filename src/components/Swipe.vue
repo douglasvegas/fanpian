@@ -1,6 +1,6 @@
 <template>
-      <!-- swiper -->
-      <swiper :options="swiperOption">
+    <!-- swiper -->
+    <swiper :options="swiperOption">
         <swiper-slide>
             <img class="imgload" src="http://mooc.inxedu.com/images/upload/image/20151026/1446026886181.jpg" alt="首页banner图片01">
         </swiper-slide>
@@ -14,26 +14,26 @@
             <img class="imgload" src="http://mooc.inxedu.com/images/upload/image/20151026/1446026905031.jpg" alt="首页banner图片02">
         </swiper-slide>
         <!-- 以下控件元素均为可选（使用具名slot来确定并应用一些操作控件元素） -->
-        <div class="swiper-pagination"  slot="pagination"></div>
-      </swiper>
+        <div class="swiper-pagination" slot="pagination"></div>
+    </swiper>
 
 </template>
 
 <script>
- import Vue from 'vue'
- import { swiper, swiperSlide } from 'vue-awesome-swiper'
+    import Vue from 'vue'
+    import { swiper, swiperSlide } from 'vue-awesome-swiper'
     export default {
         name: 'my-swiper',
-          components: {
+        components: {
             swiper,
             swiperSlide
         },
         data() {
             return {
                 swiperOption: {
-                    direction : 'horizontal',
-                    autoplay : 3000,
-                    pagination : '.swiper-pagination',
+                    direction: 'horizontal',
+                    autoplay: 3000,
+                    pagination: '.swiper-pagination',
                 }
             }
         }
@@ -56,4 +56,3 @@ img.imgload {
     background-color: white;
 }
 </style>
-

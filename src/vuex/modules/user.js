@@ -13,6 +13,9 @@ const mutations = {
     },
     FETCH_COUNT(state, count) {
         state.count = count
+    },
+    ClEAR_USER(state) {
+        state.user = [];
     }
 }
 
@@ -22,7 +25,7 @@ const actions = {
             if (result.status == 200) {
                 var json = JSON.parse(result.request.responseText);
                 json.create_date = moment(json.create_date).format().replace('T',' ').split('+')[0];
-                json.avatar = API_ROOT + '/upload/'+ json.avatar
+                json.avatar = API_ROOT + json.avatar
                 commit('FETCH_USER', json)
             }
         })

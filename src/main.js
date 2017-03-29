@@ -22,7 +22,6 @@ let router = new VueRouter({
     routes
 })
 
-
 new Vue({
   store,
   router

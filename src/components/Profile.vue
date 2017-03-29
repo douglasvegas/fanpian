@@ -23,7 +23,7 @@
                 <div class="bottomDiv">
                     <ul>
                         <li>
-                            <span>123</span>
+                            <span>{{user.keep}}</span>
                             <p>收藏</p>
                         </li>
                         <li class="middle">
@@ -46,19 +46,12 @@
 </template>
 
 <script>
-    import axios from 'axios';
-    axios.defaults.withCredentials = true
-    import { mapActions } from 'vuex'
+    import { mapActions,mapMutations } from 'vuex'
     var API_ROOT = 'http://www.douglasvegas.com/api';
     export default {
         mounted () {
-            var _this = this;
-            if (document.cookie.indexOf('fanpian') == -1) {
-                 this.$router.push('/signin') 
-            }else {
-                this.fetchUser();
-                this.fetchCount();
-            }
+            this.fetchUser();
+            this.fetchCount();
         },
         computed: {
             user() {
@@ -70,16 +63,19 @@
 
         },
         methods: {
+            
             ...mapActions({fetchCount:'fetchCount',fetchUser:'fetchUser'}),
             toLogout: function () {
                 var _this = this;
-                axios.post(API_ROOT+'/logout').then(function (result) {
+                this.axios.post(API_ROOT+'/logout').then(function (result) {
                     if (result.status == 200 && result.data.code == 200) {
                         _this.$router.push('/sigin')  
+                        _this.$store.commit('ClEAR_USER')
                     }
                 }).catch(function(err){
                     console.log(err)
                 })
+
             }
         }
     }
@@ -130,7 +126,7 @@
 }
 
 .profileItem .isRight {
-    width: 80%;
+    width: 75%;
     float: right;
 }
 

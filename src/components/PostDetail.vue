@@ -4,51 +4,91 @@
         <i class="fa fa-arrow-left fa-3" @click='back'></i>
         <div class="headText">文章详情</div>
         <i class="fa fa-bars fa-3" @click='more'></i>
-        <div class="popMore">
-            <span class="triangle"></span>
-            <ul>
-                <li>作者主页</li>
-                <li>收藏</li>
-                <li>分享</li>
-            </ul>
-        </div>
+        <transition name="bounce">
+            <div class="popMore" v-if='ifShow'>
+                <span class="triangle"></span>
+                <ul>
+                    <li>作者主页</li>
+                    <li v-if='status === 1'>修改</li>
+                    <li v-if='status === 1'>删除</li>
+
+                    <li v-if='status === 2 && isKeep === 0' @click='keepIt(0)'>收藏</li>
+                    <li v-if='status === 2 && isKeep === 1' @click='keepIt(1)'>取消收藏</li>
+                    <li v-if='status === 2 && isLike === 0' @click='likeIt(0)'>点赞</li>
+                    <li v-if='status === 2 && isLike === 1' @click='likeIt(1)'>取消点赞</li>
+                    <li v-if='status === 2'>分享</li>
+                </ul>
+            </div>
+        </transition>
     </div>
     <div class="postDetail">
         <h2> 
         {{title}}
         </h2>
         <div class="postInfo">
-            <span>{{time}}</span>
+            <span style="color:#aaa">{{time}}</span>
             <a href="javascript:;">{{author}}</a>
         </div>
         <div class="postContent  markdown-body entry-content">
-            <img :src="imgUrl" alt="" style="width: 100%;">
+            <img :src="imgUrl" alt="" style="width: 100%;" v-if='type === 0 && imgUrl !=  ""'>
             <div v-html='content'>
             </div>
         </div>
-        
-
     </div>
-    <div class="sendMsg">
-        发表留言
+    <div style="margin-bottom: 128px;">
+        <ul class="postTips">
+            <li><i class="fa fa-eye"></i> {{pv}}</li>
+            <li><i class="fa fa-thumbs-up"></i> {{like}}</li>
+            <li><i class="fa fa-folder"></i> {{keep}}</li>
+        </ul>
     </div>
+    <div class="sendMsg" @click = 'toComment'>
+        查看评论
+    </div>
+<transition name="bounce">
+    <MyPopAlert :configPop='configPop'></MyPopAlert>
+</transition>
 </div>
 </template>
 
 <script>    
+    import MyPopAlert from './PopAlert.vue'
     var moment = require('moment');
-    import VueRouter from 'vue-router';
-    let router = new VueRouter();
+    // import isLogin from '../common/checkLogin';
 
     export default {
+        beforeRouteEnter: (to, from, next) => {
+            var flag = false;
+            if(from.name === 'post') {
+                flag = true;
+            }
+            next(vm => {
+                vm.flag = flag;
+            })
+        },
         data() {
             return {
+                configPop: {},
                 title:'',
                 content:'',
                 time:'',
                 author:'',
-                imgUrl:''
+                imgUrl:'',
+                ifShow: false,
+
+                type: '', //图文类型
+                flag: false,
+                status: 0,
+                pv:0,
+                like:0,
+                keep:0,
+
+                isLike:0, //判断是否点赞收藏
+                isKeep:0
             }
+        },
+        components: {
+            MyPopAlert
         },
         mounted(){
             var id = this.$route.params.id;
@@ -56,13 +96,22 @@
             this.axios.post(API_ROOT+'/post/'+id)
                 .then(function (result) {
                     if (result.status == 200 && result.data) {
-                        var json = result.data[0];
+                        var json = result.data;
                         json.create_date = moment(json.create_date).format().replace('T',' ').split('+')[0];
                         _this.title = json.title;
                         _this.content = json.content;
-                        _this.time = json.create_date.split(" ")[0];
+                        _this.time = json.create_date;
                         _this.author = json.author.name;
-                        _this.imgUrl = json.imgUrl;
+                        _this.imgUrl = 'api'+ json.imgUrl;
+                        _this.status = json.status;
+                        _this.pv = json.pv;
+                        _this.like = json.like;
+                        _this.keep = json.keep;
+
+                        _this.isLike = json.isLike;
+                        _this.isKeep = json.isKeep;
+
+                        _this.type = json.type;
                     }
                 })
                 .catch(function (err) {
@@ -71,22 +120,99 @@
         },
         methods: {
             back: function () {
-                router.back();
+                if (this.flag) {
+                    this.$router.go(-2)
+                } else { 
+                    this.$router.go(-1);
+                }
             },
             more: function () {
-                console.log('more')
-            }
+                this.ifShow = !this.ifShow;
+            },
+            toComment: function () {
+                var id = this.$route.params.id;
+                this.$router.push( '/comment/' + id );
+            },
+            popConfig: function (text) {
+                this.configPop = {
+                    type: 'dialog',
+                    title: '温馨提示',
+                    content: text,
+                    buttons: [
+                        {
+                            value: '关闭',
+                            action: () => {
+                                console.log(this.$children[0].$data.isShow)
+                                this.$children[0]._data.isShow = false;
+                            }
+                        }
+                    ]
+                }
+            },
+            likeIt: function (type) {
+                var id = this.$route.params.id;
+                var url = API_ROOT+'/post/'+id;
 
+                if (type === 0) {
+                    url += '/like'
+                }else if (type === 1) {
+                    url += '/likeCancel'
+                }
+                this.ifShow = false;
+                var _this = this;
+                this.axios.post(url).then( result => {
+                        console.log(result)
+                        if (result.data.n === 1 && result.data.ok === 1) {
+                            _this.isLike = 0;
+                            _this.like -= 1;
+                        } else if (result.data.postId && result.data.userId) {
+                            _this.isLike = 1;
+                            _this.like += 1;
+                        } else {
+                            _this.popConfig(result.data.msg)
+                        }
+                    })
+                    .catch( function (err) {
+                        console.log(err)
+                    })
+            },
+            keepIt: function (type) {
+                this.ifShow = false;
+                var id = this.$route.params.id;
+
+                var url = API_ROOT+'/post/'+id;
+                if (type === 0) {
+                    url += '/keep'
+                }else if (type === 1) {
+                    url += '/keepCancel'
+                }
+                var _this = this;
+                this.axios.post(url).then( result => {
+                        if (result.data.n === 1 && result.data.ok === 1) {
+                            _this.isKeep = 0;
+                            _this.keep -= 1;
+                        } else if (result.data.postId && result.data.userId) {
+                            _this.isKeep = 1;
+                            _this.keep += 1;
+                        } else {
+                            _this.popConfig(result.data.msg)
+                        }
+                    })
+                    .catch( function (err) {
+                        console.log(err)
+                    })
+            }
         }
     }
     
 </script>
 
-<style>
+<style scoped>
+@import '../assets/css/bounce.animate.css';
     .postHeader {
         width: 100%;
-        height: 52px;
-        line-height: 52px;
+        height: 38px;
+        line-height: 38px;
         background-color: #24292e;
         position: fixed;
         color:#fff;
@@ -94,14 +220,14 @@
     .postHeader i.fa-arrow-left {
         font-size: 20px;
         position: absolute;
-        top: 15px;
+        top: 9px;
         left: 12px;
         z-index: 999;
     }
     .postHeader i.fa-bars {
         font-size: 20px;
         position: absolute;
-        top: 15px;
+        top: 9px;
         right: 12px;
         z-index: 999;
     }
@@ -121,9 +247,10 @@
    .postDetail a {
        text-decoration: none;   
        color: #3688c7;
+       padding-left: 10px;
    }
    .postInfo {
-       padding: 8px;
+       padding: 8px 0;
    }
 
    .postContent {
@@ -143,7 +270,6 @@
         text-align: center;
         color: white;
         font-weight: bold;
-
    }
 
    .popMore {
@@ -169,7 +295,7 @@
        margin: 0;
    }
    .popMore ul li:last-child {
-       border: none;
+       border-bottom: none !important;
    }
    .popMore .triangle {
         width: 0;
@@ -181,4 +307,17 @@
         left: 38px;
         top: -9px;
    }
+   .postTips {
+       list-style: none;
+        width: 200px;
+        float: left;
+        padding: 20px;
+   }
+   .postTips li {
+       float: left;
+       padding: 5px 10px;
+   }
+    .postTips li:first-child {
+        padding-left: 0;
+    }
 </style>

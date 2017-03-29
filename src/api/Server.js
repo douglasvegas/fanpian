@@ -24,28 +24,26 @@ class Server {
         return Axios.post(url,data);
     }
     //获取首页热门文章
-    fetchHotPosts () {
-        return this.post(CONFIG.FETCH_HOT_POST_URL)
+    fetchHotPosts (data) {
+        return this.post(CONFIG.FETCH_HOT_POST_URL,data)
     }
     //根据cateId获取文章列表
     fetchPostsByCateId () {
         return this.post(CONFIG.FETCH_POST_BY_CATEID)
     }
-
-
-
+    //获取栏目
     fetchCategories () {
         return this.post(CONFIG.FETCH_CATEGORIES_URL)
     }
-
+    //获取用户信息
     fetchUserInfo () {
         return this.post(CONFIG.FETCH_USERINFO)
     }
-
+    //获取粉丝关注数量
     fetchCount () {
         return this.post(CONFIG.FETCH_COUNT)
     }
-
+    //上传图片
     postImg (data) {
         return this.post(CONFIG.UPLOAD_IMG,data)
     }

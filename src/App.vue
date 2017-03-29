@@ -7,18 +7,20 @@
       >
     <my-header></my-header>
     </transition>-->
-    <router-view></router-view>
+   <transition name="fade">
+      <router-view></router-view>
+   </transition> 
+      
     <MyFooter v-on:listenPop = 'handlePop'></MyFooter>
     <div class="footerPopUp">
         <div class="popActions">
             <ul>
-                <li>
-                <form action=""  id="formData1">
-                  <input type="file" class="uploadImg" @change='upPhoto' name="uploadImg"/>
-                </form>
+                <li  @click = "toPost(0)">
                   相册上传
                 </li>
-                <li @click = "upText">纯文字</li>
+                <li @click = "toPost(1)">
+                  纯文字
+                </li>
             </ul>
         </div>
         <div class="popCancel" @click = "popBack">
@@ -47,7 +49,7 @@ export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
+      msg: 'Welcome to Your Vue.js App'
     }
   },
   components: {
@@ -58,24 +60,8 @@ export default {
   },
   methods: {
     ...mapActions({ pushNewImg:'pushNewImg' }),
-    beforeEnter: function (el) {
-      el.style.opacity = 0
-    },
-    enter: function (el, done) {
-      Velocity(el, {scale: 1}, { duration: 200 })
-      Velocity(el, {opacity: 1}, { duration: 300 ,complete: done})
-    },
-    leave: function (el, done) {
-      Velocity(el, { scale: 1 }, { duration: 0 })
-      Velocity(el, {opacity: 1}, {duration: 0,complete: done})
-    },
-    handleClick: function () {
-      this.msg = '123123';
-    },
-    handleChange: function () {
-      console.log(1111111)
-    },
     handlePop: function () {
+      
       var obj = document.querySelector(".footerPopUp");
 		
     	obj.style.webkitTransform="translate( 0 , -100% )";
@@ -93,21 +79,9 @@ export default {
 
       document.querySelector(".globalMask").style.top = '100%';
     },
-    upPhoto: function (e) {
-      
-      var myForm = document.getElementById('formData1');
-      var formData = new FormData(myForm);
-      this.pushNewImg(formData)
-      // router.replace({ path: '/post/create/0' })
-      this.$router.push('/post/create/0')
-      this.popBack();
-
-    },
-    upText: function () {
-
-      router.push({ path: '/test/5'})
-      console.log("上传文字");
-      this.popBack();
+    
+    toPost: function (type) {
+      this.$router.push('/post/create/'+type)
     }
   }
   
@@ -204,4 +178,14 @@ li {
       margin: 0 auto;
       margin-left: -41%;
 }
+
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0
+}
+
+
 </style>

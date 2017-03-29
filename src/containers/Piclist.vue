@@ -1,43 +1,78 @@
 <template>
-    <div class = "picList">
+    <div class="picList">
         <div>
             <ul class="imgList">
-                <PicItem :posts = 'posts'  v-for = 'info in posts'  :info = 'info' ></PicItem>
+                <PicItem :posts='posts' v-for='info in posts' :info='info'></PicItem>
             </ul>
         </div>
-        <div class="fill-footer"></div>
-    </div>    
+        <div class="fill-footer" style="text-align: center;" v-if='getCanFetch === true'><i class="fa fa-spinner"></i>加载中...</div>
+<div class="fill-footer" style="text-align: center;" v-else>-----到头了-----</div>
+</div>
 </template>
 
 <script>
-import PicItem from '../components/PicItem.vue'
-import { mapActions } from 'vuex'
+    import PicItem from '../components/PicItem.vue'
+    import { mapActions } from 'vuex';
 
-export default {
-    props: ['shouldLoadMore'],
-    watch: {
-        shouldLoadMore: function (value) {
-            console.log('变成' + value);
+    export default {
+        props: ['loadNext'],
+        watch: {
+            loadNext: function (value, oldValue) {
+                if ((value == true) && (oldValue == false)) {
+                    this.pageNo += 1;
+                    this.getNext();
+                }
+            }
+        },
+        data() {
+            return {
+                pageNo: 1,
+                pageSize: 5
+            }
+        },
+        components: {
+            PicItem
+        },
+        mounted() {
+            var data = {};
+            data.pageNo = this.pageNo;
+            data.pageSize = this.pageSize;
+
+            if (!this.$store.state.posts.canFetch) {
+                return;
+            }
+            this.fetchHotPosts(data);
+        },
+        computed: {
+            posts() {
+                return this.$store.state.posts.posts
+            },
+            getCanFetch() {
+                return this.$store.state.posts.canFetch;
+            }
+        },
+        methods: {
+            ...mapActions(['fetchHotPosts']),
+            getNext: function () {
+                var data = {};
+                data.pageNo = this.pageNo;
+                data.pageSize = this.pageSize;
+
+                this.fetchHotPosts(data);
+                this.$emit("listenReset");
+            }
         }
-    },
-    components: {
-        PicItem
-    },
-    mounted () {
-        this.fetchHotPosts();
-    }, 
-    computed: {
-        posts() {
-            return this.$store.state.posts.posts
-        }
-    },
-    methods: {
-        ...mapActions(['fetchHotPosts'])
     }
-}
 </script>
 
 <style>
+.fa-spinner { 
+    -webkit-animation:spin 2s linear infinite;
+}
+@-webkit-keyframes spin{
+    0%{-webkit-transform:rotate(0deg)}
+    100%{-webkit-transform:rotate(359deg)}
+}
 .picList { 
     height: 100%;
     width: 100%;
@@ -55,45 +90,6 @@ export default {
     width: 100%;
     margin:0;
 }
-
-.imgList img {
-    width: 100%;
-    height: 150px;
-    border-radius: 10px;
-}
-
-.wrapContent {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-.wrapContent p {
-    font-weight: bold;
-    font-size: 16px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    position: absolute;
-    top: 12px;
-    width: 90%;
-    left: 16px;
-    text-shadow: 1px 1px 4px rgb(10, 10, 10);
-}
-.wrapContent>span {
-    position: absolute;
-    top: 38px;
-    left: 16px;
-    font-size: 10px;
-}
-.wrapContent>ul {
-    position: absolute;
-    left: 0.7rem;
-    bottom: 1rem;
-    font-size: 0.8rem;
-}
-
 
 h1, h2 {
   font-weight: normal;
@@ -113,4 +109,3 @@ a {
 }
 
 </style>
-

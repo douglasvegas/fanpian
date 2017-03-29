@@ -1,36 +1,60 @@
 <template>
-    <div id="scrollView">
-        <div @scroll = 'scroll' id = 'scrollContent'>
-            <MySwipe></MySwipe>
-            <MyPlist :shouldLoadMore = 'shouldLoadMore'></MyPlist>
+    <div id="scrollView" v-scroll="loadMore" :data-isScroll="loadNext" :getCanFetch='getCanFetch'>
+        <div id='scrollContent'>
+            <Swipe></Swipe>
+            <PicList :loadNext='loadNext' @listenReset='reset'></PicList>
         </div>
     </div>
 </template>
 
 <script>
 
-import MySwipe from '../components/Swipe.vue'
-import MyPlist from './Piclist.vue'
+    import Swipe from '../components/Swipe.vue'
+    import PicList from './Piclist.vue'
 
-export default {
-    components: {
-        MySwipe,
-        MyPlist
-    },
-    data () {
-        return {
-            shouldLoadMore: false
-        }
-    },
-    methods : {
-        clickHandle: function () {
-            this.shouldLoadMore = true;
+    export default {
+        components: {
+            Swipe,
+            PicList
         },
-        scroll: function () {
-            alert('滑动了')
+        directives: {
+            scroll: {
+                bind: function (el, binding) {
+                    el.addEventListener('scroll', () => {
+                        if (!el.getAttribute("getCanFetch")) {
+                            return;
+                        }
+                        var scrollContent = document.querySelector("#scrollContent").clientHeight;
+                        if (el.scrollTop + window.innerHeight == scrollContent + 155) {
+                            binding.value();
+                        }
+                    })
+                }
+            }
+        },
+        data() {
+            return {
+                loadNext: false
+            }
+        },
+        computed: {
+            getCanFetch() {
+                return this.$store.state.posts.canFetch;
+            }
+        },
+        methods: {
+            loadMore: function () {
+                if (this.$store.state.posts.canFetch == true) {
+                    this.loadNext = true;
+                } else {
+                    this.loadNext = false;
+                }
+            },
+            reset: function () {
+                this.loadNext = false;
+            }
         }
     }
-}
 </script>
 
 <style>

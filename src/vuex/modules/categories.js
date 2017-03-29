@@ -13,8 +13,8 @@ const mutations = {
 const actions = {
     fetchCategories({commit}){
         Server.fetchCategories().then((res) => {
-            if (res.data) {
-                commit('FETCH_CATEGORIES', res.data)
+            if (res.data.data) {
+                commit('FETCH_CATEGORIES', res.data.data)
             }
         })
     }

@@ -4,6 +4,7 @@
             <div id = "row1">
             <span>翻篇6</span>
             <input type="text" class="topSearch" placeholder="请搜索用户和文章" />
+            <div class="maskSearch" v-on:click='toSearch'></div>
             </div>
             <div id = "row2">
             <ul class="tabUl">
@@ -36,7 +37,11 @@
             }
         },
         methods: {
-            ...mapActions(['fetchCategories'])
+            ...mapActions(['fetchCategories']),
+            toSearch: function () {
+                this.$router.push('/search')
+                console.log('to search')
+            }
         }
 
     }
@@ -44,6 +49,15 @@
 
 
 <style>
+.maskSearch {
+    width: 82%;
+    height: 36px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-top: 8px;
+    margin-right: 8px;
+}
 #header {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
