@@ -74,10 +74,10 @@
 
                 },
                 ruleResult: {
-                    name: false,
-                    psw: false,
-                    email: false,
-                    age: false
+                    name: '',
+                    psw: '',
+                    email: '',
+                    age: ''
                 },
                 fieldName: {
                     name: '用户名',
@@ -154,8 +154,9 @@
             },
             //提交表单
             postForm() {
-                console.log(this.handlePostValidate())
-                if (!this.handlePostValidate()) return;
+                if (!this.handlePostValidate()) {
+                    return false;
+                }
 
                 var _this = this;
                 var myForm = document.getElementById('formData');
@@ -264,12 +265,14 @@
             //提交时再校验
             handlePostValidate() {
                 for (let key in this.ruleResult) {
-                    if (!this.ruleResult[key]) {
+                    // console.log(this.ruleResult[key] )
+                    if (this.ruleResult[key] !== false) {
+                        console.log(this.ruleResult[key] )
                         this.errText = '你确定' + this.fieldName[key] + '写对了么？';
                         return false;
                     }
                 }
-
+                return;
                 //校验
                 if (!document.querySelector('input[name="avatar"]').value) {
                     this.errText = '请选择头像';
