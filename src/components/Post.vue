@@ -30,7 +30,7 @@
                         <option v-for = 'cate in categories.categories' :value = "cate.categoryId" >{{cate.name}}</option>
                     </select>
                     <input type="text" placeholder="请输入标题" v-model.trim='title' />
-                    <textarea name="" id=""  v-model.trim='content' style="width: 92%;height: 200px;outline: none;resize: none;margin: 0 auto;margin-top: 10px;"></textarea>
+                    <textarea name="" id=""  v-model.trim='content' style="width: 92%;height: 200px;outline: none;resize: none;margin: 0 auto;margin-top: 10px;border:none;"></textarea>
                 </div>
             </div>
             <div class="toPost" @click='toPost'>
@@ -297,10 +297,11 @@ import Vue from 'vue';
 }
 .postContent input{
     width: 92%;
-    height: 40px;
     outline: none;
     margin: 10px;
-    line-height: 40px;
+    font-size: 18px;
+    padding: 8px 2px;
+    border: none
 }
 select[name='category'] {
     background: transparent;

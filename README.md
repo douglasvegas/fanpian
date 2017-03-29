@@ -21,6 +21,7 @@
 - props可以直接用computed计算属性供子组件直接使用
 - 父组件定义在props中的函数方法、this无法指向子组件？还需要用箭头函数。。
 - 以v-show判断的元素在页面中只是以display为none存在，即节点仍存在、使用last-child的时候注意
+- 光标上下不居中：给input的height设定一个较小的高度，然后用padding去填充，基本上可以解决所有浏览器的问题
 
 ## Topic
 
