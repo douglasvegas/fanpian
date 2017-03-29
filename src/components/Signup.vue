@@ -9,20 +9,20 @@
                 <div :class="{'inputWrap':true,'hasError':ruleResult.name}">
                     <label for="">用户名</label>
                     <input type="text" name="name" autocomplete="off" @blur='handleBlur("name",$event)' maxlength="8" placeholder="英文或字母不超过8位"
-                        v-model='ruleForm.name' />
+                        v-model.trim='ruleForm.name' />
                 </div>
                 <div :class="{'inputWrap':true,'hasError':ruleResult.psw}">
                     <label for="">密码</label>
                     <input type="password" name="password" autocomplete="off" @blur='handleBlur("psw",$event)' maxlength="12" placeholder="8-12位英文字母下划线组成"
-                        v-model='ruleForm.psw' />
+                        v-model.trim='ruleForm.psw' />
                 </div>
                 <div :class="{'inputWrap':true,'hasError':ruleResult.email}">
                     <label for="">邮箱</label>
-                    <input type="text" name="email" autocomplete="off" @blur='handleBlur("email",$event)' v-model='ruleForm.email' />
+                    <input type="text" name="email" autocomplete="off" @blur='handleBlur("email",$event)' v-model.trim='ruleForm.email' />
                 </div>
                 <div :class="{'inputWrap':true,'hasError':ruleResult.age}">
                     <label for="">年龄</label>
-                    <input type="tel" maxlength="2" name="age" autocomplete="off" @blur='handleBlur("age",$event)' v-model='ruleForm.age'>
+                    <input type="tel" maxlength="2" name="age" autocomplete="off" @blur='handleBlur("age",$event)' v-model.trim='ruleForm.age'>
                 </div>
                 <div class="inputWrap">
                     <label for="">性别</label>
