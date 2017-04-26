@@ -203,10 +203,10 @@
 
 p.logout {
     text-align: center;
-    padding: 15px;
+    padding: 10px;
     background: #1890ec;
     color: white;
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     border-radius: 10px;
     font-size: 16px;

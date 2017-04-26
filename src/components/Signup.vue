@@ -161,7 +161,7 @@
                 var _this = this;
                 var myForm = document.getElementById('formData');
                 var formData = new FormData(myForm);
-                // _this.testLoading();
+                _this.testLoading();
 
                 this.axios.post(API_ROOT + '/signup', formData)
                     .then(result => {

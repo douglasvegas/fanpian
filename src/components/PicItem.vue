@@ -67,12 +67,14 @@ img {
     top: 38px;
     left: 16px;
     font-size: 10px;
+    text-shadow: 1px 1px 4px rgb(10, 10, 10);
 }
 .wrapContent>ul {
     position: absolute;
     left: 0.7rem;
     bottom: 1rem;
     font-size: 0.8rem;
+    text-shadow: 1px 1px 4px rgb(10, 10, 10);
 }
 li {
     display: inline-block;

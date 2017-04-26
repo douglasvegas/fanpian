@@ -30,7 +30,7 @@
                         <option v-for = 'cate in categories.categories' :value = "cate.categoryId" >{{cate.name}}</option>
                     </select>
                     <input type="text" placeholder="请输入标题" v-model.trim='title' />
-                    <textarea name="" id=""  v-model.trim='content' style="width: 92%;height: 200px;outline: none;resize: none;margin: 0 auto;margin-top: 10px;border:none;"></textarea>
+                    <textarea name="" id=""  v-model.trim='content' style="width: 92%;height: 200px;outline: none;resize: none;margin: 0 auto;margin-top: 10px;border:none;border-radius: 5px;"></textarea>
                 </div>
             </div>
             <div class="toPost" @click='toPost'>
@@ -124,6 +124,13 @@ import Vue from 'vue';
                     ]
                 }
         },
+        //加载。。。
+        posting() {
+            this.configPop = {
+                type: 'loading',
+                title: '提交中....'
+            }
+        },
         onSelect: function () {
             var id = document.querySelector('select').value;
             this.cateId = id;
@@ -203,13 +210,14 @@ import Vue from 'vue';
             if(this.imgUrl) {
                 oMyForm.append('imgUrl',this.imgUrl)
             }
-            oMyForm.append('cateId',this.cateId)
+            oMyForm.append('cateId',this.cateId);
+            this.posting();
             this.axios.post(API_ROOT+'/post',oMyForm)
-                .then(function (result) {
+                .then(result => {
                     if (result.status == 200 && result.data.code == 200) {
                         var url = '/post/' + result.data.data._id;
-                        _this.RESET_FETCH()
-                        _this.$router.push(url)
+                        this.$router.push(url);
+                        this.RESET_FETCH();
                     }
                 })
                 .catch(function (err) {
@@ -284,14 +292,14 @@ import Vue from 'vue';
 }
 .toPost{
     width: 90%;
-    height: 50px;
+    height: 40px;
     background: #1890ec;
     color: white;
     text-align: center;
-    line-height: 50px;
+    line-height: 40px;
     margin: 0 auto;
     font-size: 18px;
-    border-radius: 10px;
+    border-radius: 5px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -301,7 +309,8 @@ import Vue from 'vue';
     margin: 10px;
     font-size: 18px;
     padding: 8px 2px;
-    border: none
+    border: none;
+    border-radius: 5px;
 }
 select[name='category'] {
     background: transparent;

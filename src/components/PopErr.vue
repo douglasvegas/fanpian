@@ -48,7 +48,6 @@ div{
     width: 100%;
     text-align: center;
     margin: 0 auto;
-    border-radius: 5px;
     height: 50px;
     line-height: 50px;
 }

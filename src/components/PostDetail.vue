@@ -149,7 +149,6 @@
                 if(cates) {
                     cates.map( (v,i) => {
                         if (v.categoryId == id) {
-                            console.log(v.name)
                             this.cateName = v.name;
                             return v.name;
                         }
@@ -170,7 +169,6 @@
                         {
                             value: '关闭',
                             action: () => {
-                                console.log(this.$children[0].$data.isShow)
                                 this.$children[0]._data.isShow = false;
                             }
                         }
@@ -189,7 +187,6 @@
                 this.ifShow = false;
                 var _this = this;
                 this.axios.post(url).then( result => {
-                        console.log(result)
                         if (result.data.n === 1 && result.data.ok === 1) {
                             _this.isLike = 0;
                             _this.like -= 1;
@@ -239,8 +236,8 @@
 @import '../assets/css/bounce.animate.css';
     .postHeader {
         width: 100%;
-        height: 38px;
-        line-height: 38px;
+        height: 40px;
+        line-height: 40px;
         background-color: #24292e;
         position: fixed;
         color:#fff;
@@ -291,8 +288,8 @@
    .sendMsg {
        width: 100%;
         background-color: #28a745;
-        height: 50px;
-        line-height: 50px;
+        height: 40px;
+        line-height: 40px;
         position: fixed;
         bottom: 0;
         text-align: center;

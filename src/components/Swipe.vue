@@ -2,16 +2,16 @@
     <!-- swiper -->
     <swiper :options="swiperOption">
         <swiper-slide>
-            <img class="imgload" src="http://mooc.inxedu.com/images/upload/image/20151026/1446026886181.jpg" alt="首页banner图片01">
+            <img class="imgload" src="http://www.douglasvegas.com/api/upload/1490766469621_88484572087.jpeg" alt="首页banner图片01">
         </swiper-slide>
         <swiper-slide>
-            <img class="imgload" src="http://mooc.inxedu.com/images/upload/image/20151026/1446026905031.jpg" alt="首页banner图片02">
+            <img class="imgload" src="http://www.douglasvegas.com/api/upload/1490768416830_68493953152.jpeg" alt="首页banner图片02">
         </swiper-slide>
         <swiper-slide>
-            <img class="imgload" src="http://mooc.inxedu.com/images/upload/image/20151026/1446026886181.jpg" alt="首页banner图片01">
+            <img class="imgload" src="http://www.douglasvegas.com/api/upload/1490766469621_88484572087.jpeg" alt="首页banner图片01">
         </swiper-slide>
         <swiper-slide>
-            <img class="imgload" src="http://mooc.inxedu.com/images/upload/image/20151026/1446026905031.jpg" alt="首页banner图片02">
+            <img class="imgload" src="http://www.douglasvegas.com/api/upload/1490768416830_68493953152.jpeg" alt="首页banner图片02">
         </swiper-slide>
         <!-- 以下控件元素均为可选（使用具名slot来确定并应用一些操作控件元素） -->
         <div class="swiper-pagination" slot="pagination"></div>

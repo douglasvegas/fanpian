@@ -63,9 +63,12 @@ const routers = [
                 name: 'profile',
                 component: Profile,
                 beforeEnter: (to, from, next) => {
+                    if (from.path.indexOf('signin') != -1 && document.cookie.indexOf('fanpian') == -1) {
+                        return;
+                    }
                     if (document.cookie.indexOf('fanpian') == -1) {
                         next({
-                            path: 'signin',
+                            path: '/signin',
                             // query: { redirect: '/' }
                         })
                     }

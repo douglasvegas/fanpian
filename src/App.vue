@@ -1,12 +1,5 @@
 <template>
   <section>
-    <!--<transition
-        v-on:before-enter="beforeEnter"
-        v-on:enter="enter"
-        v-on:leave="leave"
-      >
-    <my-header></my-header>
-    </transition>-->
    <transition name="fade">
       <router-view></router-view>
    </transition> 
@@ -126,7 +119,7 @@ li {
     width: 96%;
     height: 147px;
     margin: 1% 2%;
-    border-radius: 20px;
+    border-radius: 6px;
     text-align: center;
     top: 100%;
 }
@@ -135,7 +128,7 @@ li {
     width: 100%;
     height: 60%;
     background: white;
-    border-radius: 20px;
+    border-radius: 6px;
     margin-bottom: 10px;
     opacity: 0.9;
     position: relative;

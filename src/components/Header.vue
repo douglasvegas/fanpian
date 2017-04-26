@@ -2,7 +2,7 @@
     <div>
         <div id="header">
             <div id = "row1">
-            <span>翻篇6</span>
+            <span>Record</span>
             <input type="text" class="topSearch" placeholder="请搜索用户和文章" />
             <div class="maskSearch" v-on:click='toSearch'></div>
             </div>

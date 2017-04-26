@@ -5,7 +5,7 @@
                 <PicItem :posts='posts' v-for='info in posts' :info='info'></PicItem>
             </ul>
         </div>
-        <div class="fill-footer" style="text-align: center;" v-if='getCanFetch === true'><i class="fa fa-spinner"></i>加载中...</div>
+<div class="fill-footer" style="text-align: center;" v-if='getCanFetch === true'><i class="fa fa-spinner"></i>加载中...</div>
 <div class="fill-footer" style="text-align: center;" v-else>-----到头了-----</div>
 </div>
 </template>
