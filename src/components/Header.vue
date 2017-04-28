@@ -40,7 +40,6 @@
             ...mapActions(['fetchCategories']),
             toSearch: function () {
                 this.$router.push('/search')
-                console.log('to search')
             }
         }
 

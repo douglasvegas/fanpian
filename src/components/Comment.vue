@@ -20,12 +20,16 @@
             <span v-if='isLogin' @click='postComment'>发表</span>  
             <span v-else @click='toLogin'>登录</span>  
         </div>
+        <transition name="bounce">
+            <MyPopAlert :configPop='configPop' v-show='ifShow'></MyPopAlert>
+        </transition>
     </div>
 </template>
 <script>
     import CommentList from './CommentItem.vue';
     import isLogin from '../common/checkLogin';
     import Bus from '../eventBus/bus.js';
+    import MyPopAlert from './PopAlert.vue';
     export default {
         data () {
             return {
@@ -33,6 +37,8 @@
                 content:'',
                 quoteId: null,
                 quoteName:null,
+                configPop: {},
+                ifShow: true,
                 isLogin: isLogin()
             }
         },
@@ -56,7 +62,8 @@
             }
         },
         components:{
-            CommentList
+            CommentList,
+            MyPopAlert
         },
         mounted() {
             var id = this.$route.params.id;
@@ -73,7 +80,28 @@
             setFocus: function () {
                 this.$refs.inputComment.focus();
             },
+            testLoading() {
+                this.configPop = {
+                    type: 'dialog',
+                    title: '评论不能为空....',
+                    buttons: [
+                        {
+                            value: '关闭',
+                            action: () => {
+                                this.$children[0]._data.isShow = false;
+                            }
+                        }
+                    ]
+                }
+            },
+            testSuccess() {
+                this.configPop = {
+                    type: 'loading',
+                    title: '发表成功'
+                }
+            },
             postComment: function () {
+                 this.ifShow = true;
                 var id = this.$route.params.id;
                 var url = API_ROOT+'/comment/' + id + '/create';
                 var data = {},
@@ -85,17 +113,26 @@
                 data.content = this.content.replace(repStr,'');
                 data.quoteId = this.quoteId;
                 data.quoteName = this.quoteName;
+                if(!data.content) {
+                    this.testLoading();
+                    return;
+                }
                 this.axios.post(url,data)
                     .then(result => {
-                        console.log(result)
                         if (result.status === 200 && result.data.code === 200) {
                             this.getComments();
                             this.content = '';
                             this.quoteId = null;
                             this.quoteName = null;
+                            this.testSuccess();
+                            var _this = this;
+                            setTimeout(function () {
+                                _this.ifShow = false;
+                            }, 1000)
+                            
                         }
                     }).catch( err => {
-                        console.log(err)
+
                     })
             },
             getComments: function () {
@@ -107,7 +144,7 @@
                             this.comments = result.data;
                         }
                     }).catch( err => {
-                        console.log(err)
+
                     })
             },
             toLogin: function () {
@@ -207,4 +244,5 @@
         padding-top: 20px;
         padding-right: 20px;
     }
+    @import '../assets/css/bounce.animate.css';
 </style>

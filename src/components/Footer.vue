@@ -51,12 +51,13 @@
   text-align: center;
 }
 .footer ul {
-    display: table;
+    display: flex;
     width: 100%;
 }
 .footer li {
-    /*padding: 0 30px 0;*/
-    display: table-cell;
+    /*padding: 0 30px 0;
+    display: table-cell;*/
+    flex: 1;
 }
 
 .footer li a {
@@ -65,9 +66,9 @@
 }
 
 .footer .toTop{
-    position: relative;
+    /*position: relative;
     top: -20px;
-    left: 28px;
+    left: 28px;*/
 }
 .footer .active{
     color: #289bf3;

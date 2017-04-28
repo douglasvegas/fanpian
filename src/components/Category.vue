@@ -77,7 +77,6 @@ asdasd
                                 v.imgUrl = API_ROOT + v.imgUrl
                             }
                         })
-                        console.log(result.data)
                         _this.posts = _this.posts.concat(result.data);
                     } else {
                         _this.isEnd = true;
@@ -85,7 +84,7 @@ asdasd
                         _this.getCanFetch = false;
                     }
                 }).catch(function (err) {
-                    console.log(err)
+
                 })
             },
             loadMore: function () {
@@ -93,7 +92,6 @@ asdasd
                 this.isBottom = true;
                 this.pageNo++;
                 this.getPostsByCateId(cateId,this.pageNo)
-                console.log('加载更多')
             }
         },
         mounted () {
