@@ -40,3 +40,9 @@ npm run dev
 # 打包
 npm run build 
 ```
+
+## 后端地址
+[fanpianBackend](https://github.com/douglasvegas/fanpianBackend)
+
+## 线上预览
+[Record 地址](http://www.douglasvegas.com/)
