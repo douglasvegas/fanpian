@@ -8,7 +8,7 @@
             </div>
             <div id = "row2">
             <ul class="tabUl">
-                <router-link :categories = 'categories' v-for="(tab,index) in categories"  :to="{ path:'/category/'+tab.categoryId }"  tag="li"  active-class="tabCurrent" >
+                <router-link :categories = 'categories' v-for="(tab,index) in categories" v-if="tab.isDelete == false" :to="{ path:'/category/'+tab.categoryId }"  tag="li"  active-class="tabCurrent" >
                     {{tab.name}}
                 </router-link>
             </ul>

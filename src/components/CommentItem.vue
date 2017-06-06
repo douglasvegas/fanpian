@@ -8,7 +8,7 @@
             </span>
             <span class="ifSelf" v-show='false'>作者</span>
             <span class="createTime" style="">
-                2017-04-04
+                {{ formateTime(comment.create_date) }}
             </span>
         </div>
         <div class="commentInfo">
@@ -30,6 +30,7 @@
 
 <script>
     import Bus from '../eventBus/bus.js';
+    var moment = require('moment')
     export default {
         props:['comment','index'],
         data() {
@@ -38,6 +39,9 @@
             }
         },
         methods: {
+            formateTime: function (str) {
+                return moment(str).format().replace('T',' ').split('+')[0];
+            },
             reply: function (e) {
                 var name = e.target.getAttribute('data-name');
                 var commentId = e.target.getAttribute('data-commentId');

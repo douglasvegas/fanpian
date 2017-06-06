@@ -3,7 +3,7 @@
     <img :src = "info.imgUrl" onerror="this.src='http://www.douglasvegas.com/api/default.png'"/>
     <div class="wrapContent" @click='toPost(info._id)'>
         <p>{{info.title}}</p>
-        <span>{{info.author.name}}</span>
+        <span>{{info.author?info.author.name:'已注销'}}</span>
         <ul>
             <li>
                 <i class="toTop fa fa-eye"></i>

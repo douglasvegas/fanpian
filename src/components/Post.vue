@@ -27,7 +27,7 @@
                 <div style="text-align: center;">
                     <select name="category" id="" @change = 'onSelect'>
                         <option value="0">请选择分类</option>
-                        <option v-for = 'cate in categories.categories' :value = "cate.categoryId" >{{cate.name}}</option>
+                        <option v-for = 'cate in categories.categories' :value = "cate.categoryId" v-if="cate.isDelete == false">{{cate.name}}</option>
                     </select>
                     <input type="text" placeholder="请输入标题" v-model.trim='title' />
                     <textarea name="" id=""  v-model.trim='content' style="width: 92%;height: 200px;outline: none;resize: none;margin: 0 auto;margin-top: 10px;border:none;border-radius: 5px;"></textarea>

@@ -15,11 +15,7 @@ const Post = resolve => {require(['../components/Post.vue'], resolve)}
 const Comment = resolve => {require(['../components/Comment.vue'], resolve)}
 const PostDetail = resolve => {require(['../components/PostDetail.vue'], resolve)}
 const Search = resolve => {require(['../components/Search.vue'], resolve)}
-// import Home from '../containers/Home.vue'
-// import App from '../App.vue'
-// import MyContent from '../containers/Content.vue'
-// import Profile from '../components/Profile.vue'
-// import Category from '../components/Category.vue'
+
 
 const routers = [
     {

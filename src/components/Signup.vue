@@ -161,15 +161,15 @@
                 var _this = this;
                 var myForm = document.getElementById('formData');
                 var formData = new FormData(myForm);
-                _this.testLoading();
+                
 
                 this.axios.post(API_ROOT + '/signup', formData)
                     .then(result => {
                         var json = JSON.parse(result.request.responseText)
                         if (json.code == 200) {
+                            _this.testLoading();
                             this.$router.push('/profile')
                         } else {
-                            // this.testDialog();
                             this.errText = json.msg
                         }
                     }).catch(function (err) {
@@ -178,7 +178,6 @@
             },
             //头像压缩
             Picture(e) {
-                console.log(e)
                 var allowExt = ['jpg', 'gif', 'bmp', 'png', 'jpeg'];
                 var ua = navigator.userAgent;
                 var file = e.target.files;

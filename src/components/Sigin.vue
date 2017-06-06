@@ -9,7 +9,6 @@
                 <input type="text" name="name" maxlength="8" autocomplete="off" class="loginInput" style="background-color: #ccc;" ref='name'></div>
                 <div class="inputWrap"><label for="">密码  </label><input type="password" name="password" autocomplete="off" class="loginInput" ref='psw'></div>
                 <div class="buttonWrap"><input type="button" value='登录' @click='toLogin' class="postButton" /></div>
-                <div class="buttonWrap"><input type="button" value='快速登录' @click='toLoginFast' class="postButton" /></div>
                 <div class="buttonWrap"><a>找回密码</a></div>
         </form>
     <input type="button" value='去注册' @click='toSignup' class="toSignUp" />

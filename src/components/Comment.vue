@@ -163,7 +163,6 @@
         position: fixed;
         color:#fff;
         z-index: 99999;
-        opacity: 0.9;
     }
     .postHeader i.fa-arrow-left {
         font-size: 20px;
